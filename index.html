@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <!-- Basic Meta Tags for SEO and Character Set -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title - Maroon</title>
-    <!-- CHANGE THIS FOR EACH PAGE -->
     <meta name="description" content="Description of the page content." />
-    <!-- CHANGE THIS FOR EACH PAGE -->
     <meta name="keywords" content="maroon, glasses, kính mắt, fashion" />
 
-    <!-- Favicon -->
     <link
       rel="icon"
       href="assets\images\icons\favicon-maroon.ico"
       type="image/x-icon"
     />
 
-    <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    <!-- Preconnect to Google Fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,14 +22,12 @@
       rel="stylesheet"
     />
 
-    <!-- Defer JS for non-blocking rendering -->
     <script src="assets/js/main.js" defer></script>
   </head>
   <body>
     <header class="site-header">
       <div class="header-top">
         <div class="container header-top-container">
-          <!-- Mobile Menu Toggle Button -->
           <button
             class="mobile-menu-toggle"
             aria-label="Mở menu"
@@ -47,12 +39,10 @@
             <span></span>
           </button>
 
-          <!-- Logo -->
           <a href="index.html" class="logo">
             <img src="assets/images/icons/maroon-logo.svg" alt="Maroon Logo" />
           </a>
 
-          <!-- Header Actions: Search, Cart -->
           <div class="header-actions">
             <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
               <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
@@ -72,7 +62,6 @@
         </div>
       </div>
 
-      <!-- Main Navigation (for Desktop) -->
       <div class="header-bottom">
         <nav class="main-navigation-desktop" aria-label="Main navigation">
           <ul>
@@ -96,7 +85,6 @@
       </div>
     </header>
 
-    <!-- ======================= MOBILE NAVIGATION (SLIDE-IN MENU) ======================= -->
     <nav
       class="mobile-navigation"
       id="main-navigation"
@@ -130,8 +118,7 @@
             src="assets\images\icons\maroon-logo-footer.svg"
             alt="Maroon Logo"
           />
-          <!-- A white version for dark bg -->
-        </a>
+          </a>
         <div class="mobile-nav-socials">
           <a href="#" aria-label="Instagram"
             ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
@@ -146,10 +133,8 @@
       </div>
     </nav>
 
-    <!-- Page Overlay for when mobile menu is open -->
     <div class="page-overlay"></div>
 
-    <!-- ======================= SEARCH OVERLAY ======================= -->
     <div class="search-overlay" id="search-overlay">
       <button class="close-search" aria-label="Đóng tìm kiếm">
         <svg
@@ -178,471 +163,274 @@
       </form>
     </div>
 
-    <!-- ======================= CONTACT WIDGET ======================= -->
     <div class="contact-widget-container">
-      <!-- These are the pop-up contact options, initially hidden -->
-      <div class="contact-options">
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Contact on Zalo"
-        >
-          <img src="assets/images/icons/zalo-icon-contact.svg" alt="Zalo" />
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Contact on Messenger"
-        >
-          <img
-            src="assets/images/icons/messenger-icon-contact.svg"
-            alt="Messenger"
-          />
-        </a>
-      </div>
+        <div class="contact-options">
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Contact on Zalo">
+                <img src="assets/images/icons/zalo-icon-contact.svg" alt="Zalo" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Contact on Messenger">
+                <img src="assets/images/icons/messenger-icon-contact.svg" alt="Messenger" />
+            </a>
+            <button id="contact-close-button" aria-label="Close contact options">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
 
-      <!-- This is the main button that is always visible -->
-      <button class="contact-toggle-button" aria-label="Open contact options">
-        <img
-          src="assets/images/icons/head-set-icon-contact.svg"
-          alt="Contact Us"
-        />
-      </button>
+        <button class="contact-toggle-button" aria-label="Open contact options">
+            <img src="assets/images/icons/head-set-icon-contact.svg" alt="Contact Us" />
+        </button>
     </div>
 
-    <!-- ======================= MAIN CONTENT ======================= -->
-    <!-- This is the ONLY section you will change for each page. -->
     <main>
-      <!-- START: PAGE-SPECIFIC CONTENT HERE -->
-      <!-- ======================= HERO BANNER SLIDER ======================= -->
       <section class="hero-slider" aria-label="Featured content">
         <div class="slides-container">
-          <!-- Slide 1 -->
-          <div
-            class="slide active"
-            style="background-image: url('assets/images/banner-1.JPG')"
-          ></div>
-
-          <!-- Slide 2 -->
-          <div
-            class="slide"
-            style="background-image: url('assets/images/banner-2.JPG')"
-          ></div>
-
-          <!-- Slide 3 -->
-          <div
-            class="slide"
-            style="background-image: url('assets/images/banner-3.JPG')"
-          ></div>
+          <div class="slide" style="background-image: url('assets/images/banner-1.JPG')"></div>
+          <div class="slide" style="background-image: url('assets/images/banner-2.JPG')"></div>
+          <div class="slide" style="background-image: url('assets/images/banner-3.JPG')"></div>
         </div>
-
-        <!-- Pagination Dots -->
-        <div class="hero-pagination">
-          <!-- Dots will be generated by JavaScript, but can be hardcoded like this -->
-          <button class="dot active" aria-label="Go to slide 1"></button>
-          <button class="dot" aria-label="Go to slide 2"></button>
-          <button class="dot" aria-label="Go to slide 3"></button>
-        </div>
+        <div class="hero-pagination"></div>
       </section>
-      <!-- ======================= ABOUT US SUMMARY ======================= -->
+
       <section class="about-us-summary">
         <div class="container about-us-container">
-          <!-- Image Showcase -->
           <div class="about-us-images">
-            <img
-              src="assets\images\about-maroon-your-look.JPG"
-              alt="Model wearing Maroon glasses"
-              class="about-us-img-1"
-              loading="lazy"
-            />
-            <img
-              src="assets\images\about-maroon-your-story.JPG"
-              alt="Maroon glasses, your story"
-              class="about-us-img-2"
-              loading="lazy"
-            />
+            <img src="assets\images\about-maroon-your-look.JPG" alt="Model wearing Maroon glasses" class="about-us-img-1" loading="lazy" />
+            <img src="assets\images\about-maroon-your-story.JPG" alt="Maroon glasses, your story" class="about-us-img-2" loading="lazy" />
           </div>
-
-          <!-- Text Content -->
           <div class="about-us-content">
-            <h2>“Your look, your story”</h2>
+            <h2>Về Maroon</h2>
             <p>
-              Ngay từ lúc lên ý tưởng, chúng tôi luôn tự hỏi: "Làm thế nào để
-              một chiếc kính không chỉ đơn thuần là một phụ kiện mà còn là dấu
-              ấn của cá nhân?"
-            </p>
-            <p>
-              Chúng tôi nhận ra rằng ánh nhìn của mỗi người luôn mang theo câu
-              chuyện riêng - một câu chuyện không cần phải kể bằng lời mà có thể
-              cảm nhận từ phong cách, từ cá tính, từ cách họ tự tin đối diện với
-              thế giới.
+              Những được thành lập từ năm 2014, trải qua gần 10 năm phát triển kính mắt Anna đã, đang và sẽ chiếm vị trí không thể thiếu đối với các bạn trẻ. Với quy mô trên toàn quốc, Anna sẽ tiếp tục mở rộng thêm chi nhánh để mang những sản phẩm chất lượng đến tay người dùng.
             </p>
             <a href="about.html" class="btn btn-primary">Xem thêm</a>
           </div>
         </div>
       </section>
-      <!-- ======================= NEW ARRIVAL SECTION ======================= -->
+
       <section class="product-section">
         <div class="container">
-          <!-- Section Header -->
           <div class="section-header">
             <h2>New Arrival</h2>
             <a href="products.html" class="view-all-link">Xem tất cả</a>
           </div>
-
-          <!-- Product Slider/Grid Container -->
           <div class="product-container">
-            <!-- Product Card 1 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính abc"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính abc"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính abc</h3>
-                  <div class="product-meta">
-                    <p class="product-price">250.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
+              <article class="product-card">
+                <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính abc">
+                  <div class="product-image-container">
+                    <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính abc" loading="lazy"/>
                   </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Product Card 2 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính def"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính def"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính def</h3>
-                  <div class="product-meta">
-                    <p class="product-price">280.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
+                  <div class="product-info">
+                    <h3 class="product-name">Kính abc</h3>
+                    <div class="product-meta">
+                      <p class="product-price">250.000 VNĐ</p>
+                      <span class="product-detail-link">Chi tiết</span>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Product Card 3 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính ghi"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính ghi"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính ghi</h3>
-                  <div class="product-meta">
-                    <p class="product-price">250.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
+                </a>
+              </article>
+              <article class="product-card">
+                <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính def">
+                  <div class="product-image-container">
+                      <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính def" loading="lazy"/>
                   </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Product Card 4 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính jkl"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính jkl"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính jkl</h3>
-                  <div class="product-meta">
-                    <p class="product-price">300.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
+                  <div class="product-info">
+                      <h3 class="product-name">Kính def</h3>
+                      <div class="product-meta">
+                          <p class="product-price">280.000 VNĐ</p>
+                          <span class="product-detail-link">Chi tiết</span>
+                      </div>
                   </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Product Card 5 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính mno"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính mno"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính mno</h3>
-                  <div class="product-meta">
-                    <p class="product-price">250.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Product Card 6 -->
-            <article class="product-card">
-              <a
-                href="product-detail.html"
-                class="product-card-link"
-                aria-label="View details for Kính pqr"
-              >
-                <div class="product-image-container">
-                  <img
-                    src="assets/images/products/kinh-mat-maroon-1.jpg"
-                    alt="Kính pqr"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">Kính pqr</h3>
-                  <div class="product-meta">
-                    <p class="product-price">275.000 VNĐ</p>
-                    <span class="product-detail-link">Chi tiết</span>
-                  </div>
-                </div>
-              </a>
-            </article>
+                </a>
+              </article>
+              <article class="product-card">
+                  <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính ghi">
+                      <div class="product-image-container">
+                          <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính ghi" loading="lazy"/>
+                      </div>
+                      <div class="product-info">
+                          <h3 class="product-name">Kính ghi</h3>
+                          <div class="product-meta">
+                              <p class="product-price">250.000 VNĐ</p>
+                              <span class="product-detail-link">Chi tiết</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+              <article class="product-card">
+                  <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính jkl">
+                      <div class="product-image-container">
+                          <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính jkl" loading="lazy"/>
+                      </div>
+                      <div class="product-info">
+                          <h3 class="product-name">Kính jkl</h3>
+                          <div class="product-meta">
+                              <p class="product-price">300.000 VNĐ</p>
+                              <span class="product-detail-link">Chi tiết</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+              <article class="product-card">
+                  <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính mno">
+                      <div class="product-image-container">
+                          <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính mno" loading="lazy"/>
+                      </div>
+                      <div class="product-info">
+                          <h3 class="product-name">Kính mno</h3>
+                          <div class="product-meta">
+                              <p class="product-price">250.000 VNĐ</p>
+                              <span class="product-detail-link">Chi tiết</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+              <article class="product-card">
+                  <a href="product-detail.html" class="product-card-link" aria-label="View details for Kính pqr">
+                      <div class="product-image-container">
+                          <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Kính pqr" loading="lazy"/>
+                      </div>
+                      <div class="product-info">
+                          <h3 class="product-name">Kính pqr</h3>
+                          <div class="product-meta">
+                              <p class="product-price">275.000 VNĐ</p>
+                              <span class="product-detail-link">Chi tiết</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
           </div>
         </div>
       </section>
-      <!-- ======================= PROCESS SECTION ======================= -->
+
       <section class="process-section">
         <div class="container process-container">
-          <!-- Item 1: Free Shipping -->
           <a href="#" class="process-item">
-            <img
-              src="assets/images/icons/free-ship-toan-quoc.svg"
-              alt="Free Shipping Toàn Quốc"
-              class="icon-shipping"
-              loading="lazy"
-            />
+            <img src="assets/images/icons/free-ship-toan-quoc.svg" alt="Free Shipping Toàn Quốc" class="icon-shipping" loading="lazy" />
             <p>Free ship toàn quốc</p>
           </a>
-
-          <!-- Item 2: Returns -->
           <a href="#" class="process-item">
-            <img
-              src="assets/images/icons/doi-tra-15-ngay.svg"
-              alt="Đổi Trả 15 Ngày"
-              class="icon-bag"
-              loading="lazy"
-            />
+            <img src="assets/images/icons/doi-tra-15-ngay.svg" alt="Đổi Trả 15 Ngày" class="icon-bag" loading="lazy" />
             <p>Đổi trả 15 ngày</p>
           </a>
-
-          <!-- Item 3: Warranty -->
           <a href="#" class="process-item">
-            <img
-              src="assets/images/icons/bao-hanh-3-thang.svg"
-              alt="Bảo Hành 3 Tháng"
-              class="icon-shield"
-              loading="lazy"
-            />
+            <img src="assets/images/icons/bao-hanh-3-thang.svg" alt="Bảo Hành 3 Tháng" class="icon-shield" loading="lazy" />
             <p>Bảo hành 3 tháng</p>
           </a>
         </div>
       </section>
-      <!-- ======================= INSTAGRAM FEED SECTION ======================= -->
+
       <section class="instagram-section">
         <div class="container">
-          <!-- Section Header -->
           <div class="section-header">
             <h2>Instagram Feed</h2>
           </div>
-
-          <!-- Instagram Image Grid -->
           <div class="instagram-grid">
-            <!-- Replace href with your actual Instagram post URL -->
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 1"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 1" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 2"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 2" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 3"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 3" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 4"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 4" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 5"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 5" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 6"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 6" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 7"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 7" loading="lazy" />
             </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="instagram-post"
-            >
-              <img
-                src="assets/images/products/kinh-mat-maroon-1.jpg"
-                alt="Instagram post 8"
-                loading="lazy"
-              />
+            <a href="#" target="_blank" rel="noopener noreferrer" class="instagram-post">
+              <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Instagram post 8" loading="lazy" />
             </a>
           </div>
-
-          <!-- Explore Button -->
           <div class="instagram-explore">
-            <a
-              href="https://instagram.com/YOUR_PROFILE_NAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary"
-            >
-              <img
-                src="assets/images/icons/instagram-feed-section-icon.svg"
-                alt="Instagram Icon"
-                class="btn-icon"
-              />
+            <a href="https://instagram.com/YOUR_PROFILE_NAME" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <img src="assets/images/icons/instagram-feed-section-icon.svg" alt="Instagram Icon" class="btn-icon" />
               Explore on Instagram
             </a>
           </div>
         </div>
       </section>
-      <!-- Example: For the homepage, you would put the hero section, story section, product grid, etc. -->
-      <!-- Example: For the "About" page, you would put the "Xin chào" banner, "Our Story" text, etc. -->
 
-      <div class="container" style="padding: 100px 0; text-align: center">
-        <h1>Page Content Goes Here</h1>
-        <p>Replace this with the unique sections for each page.</p>
-      </div>
-
-      <!-- END: PAGE-SPECIFIC CONTENT HERE -->
+      <section class="blog-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Talk with Maroon</h2>
+            <a href="blog.html" class="view-all-link">Xem tất cả</a>
+          </div>
+          <div class="blog-grid">
+            <div class="blog-slides-container">
+              <article class="blog-post-card featured-post">
+                <a href="blog-post.html" aria-label="Read more about Mắt Kính Râm Nam Thời Trang">
+                  <img src="assets\images\about-maroon-your-look.JPG" alt="Man wearing sunglasses" loading="lazy" />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
+                </a>
+              </article>
+              <article class="blog-post-card">
+                <a href="blog-post.html" aria-label="Read more about OST Mood">
+                  <img src="assets/images/banner-3.JPG" alt="Woman wearing glasses" loading="lazy" />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
+                </a>
+              </article>
+              <article class="blog-post-card">
+                <a href="blog-post.html" aria-label="Read more about Sunglasses">
+                  <img src="assets\images\about-maroon-your-story.JPG" alt="Close up of sunglasses" loading="lazy" />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
+                </a>
+              </article>
+              <article class="blog-post-card">
+                <a href="blog-post.html" aria-label="Read more about Glasses on a surface">
+                  <img src="assets\images\about-maroon-your-story.JPG" alt="Glasses on a surface" loading="lazy" />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+          <div class="hero-pagination blog-pagination"></div>
+        </div>
+      </section>
     </main>
 
-    <!-- ======================= FOOTER ======================= -->
     <footer class="site-footer">
       <div class="container footer-container">
-        <!-- Section 1: About (Logo & Socials) -->
         <div class="footer-about">
           <a href="index.html" class="footer-logo">
-            <img
-              src="assets\images\icons\maroon-logo-footer.svg"
-              alt="Maroon Logo"
-              loading="lazy"
-            />
+            <img src="assets\images\icons\maroon-logo-footer.svg" alt="Maroon Logo" loading="lazy" />
           </a>
           <div class="footer-socials">
-            <a href="#" aria-label="Instagram"
-              ><img
-                src="assets\images\icons\instagram-icon.svg"
-                alt="Instagram"
-            /></a>
-            <a href="#" aria-label="Shopee"
-              ><img src="assets\images\icons\shopee-icon.svg" alt="Shopee"
-            /></a>
-            <a href="#" aria-label="Facebook"
-              ><img src="assets\images\icons\facebook-icon.svg" alt="Facebook"
-            /></a>
+          <a href="#" aria-label="Instagram"
+            ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
+          /></a>
+          <a href="#" aria-label="Shopee"
+            ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
+          /></a>
+          <a href="#" aria-label="Facebook"
+            ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
+          /></a>
           </div>
         </div>
-
-        <!-- Section 2: Navigation Links -->
         <nav class="footer-nav" aria-label="Footer navigation">
           <ul>
             <li><a href="index.html">Trang chủ</a></li>
@@ -652,17 +440,11 @@
             <li><a href="#">Chính sách</a></li>
           </ul>
         </nav>
-
-        <!-- Section 3: Contact Information -->
         <div class="footer-contact">
           <h4>THÔNG TIN LIÊN HỆ</h4>
           <ul>
             <li><a href="tel:0347125600">034 712 5600</a></li>
-            <li>
-              <a href="mailto:kinhmatmaroon@gmail.com"
-                >kinhmatmaroon@gmail.com</a
-              >
-            </li>
+            <li><a href="mailto:kinhmatmaroon@gmail.com">kinhmatmaroon@gmail.com</a></li>
           </ul>
         </div>
       </div>
