@@ -4,70 +4,131 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sản Phẩm - Maroon</title>
-    <meta name="description" content="Khám phá các sản phẩm kính mắt thời trang từ Maroon." />
-    <meta name="keywords" content="maroon, glasses, kính mắt, fashion, products" />
+    <meta
+      name="description"
+      content="Khám phá các sản phẩm kính mắt thời trang từ Maroon."
+    />
+    <meta
+      name="keywords"
+      content="maroon, glasses, kính mắt, fashion, products"
+    />
 
-    <link rel="icon" href="assets/images/icons/favicon-maroon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="assets/images/icons/favicon-maroon.ico"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="assets/js/main.js" defer></script>
   </head>
-      <nav
-      class="mobile-navigation"
-      id="main-navigation"
-      aria-label="Mobile navigation"
-    >
-      <div class="mobile-nav-header">
-        <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
-          <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
-          <span class="cart-count">0</span>
-        </a>
-        <button
-          class="search-toggle"
-          aria-label="Mở tìm kiếm"
-          aria-controls="search-overlay"
-        >
-          <img src="assets/images/icons/maroon-search.svg" alt="Search Icon" />
-        </button>
+  <nav
+    class="mobile-navigation"
+    id="main-navigation"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-nav-header">
+      <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
+        <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
+        <span class="cart-count">0</span>
+      </a>
+      <button
+        class="search-toggle"
+        aria-label="Mở tìm kiếm"
+        aria-controls="search-overlay"
+      >
+        <img src="assets/images/icons/maroon-search.svg" alt="Search Icon" />
+      </button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Về Maroon</a></li>
+      <li><a href="products.html">Sản Phẩm</a></li>
+      <li><a href="#">Chính sách</a></li>
+      <li><a href="blog.html">Talk with Maroon</a></li>
+    </ul>
+
+    <div class="mobile-nav-footer">
+      <a href="index.html" class="mobile-nav-logo">
+        <img
+          src="assets\images\icons\maroon-logo-footer.svg"
+          alt="Maroon Logo"
+        />
+      </a>
+      <div class="mobile-nav-socials">
+        <a href="#" aria-label="Instagram"
+          ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
+        /></a>
+        <a href="#" aria-label="Shopee"
+          ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
+        /></a>
+        <a href="#" aria-label="Facebook"
+          ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
+        /></a>
       </div>
+    </div>
+  </nav>
 
-      <ul class="mobile-nav-links">
-        <li><a href="index.html">Trang chủ</a></li>
-        <li><a href="about.html">Về Maroon</a></li>
-        <li><a href="products.html">Sản Phẩm</a></li>
-        <li><a href="#">Chính sách</a></li>
-        <li><a href="blog.html">Talk with Maroon</a></li>
-      </ul>
+  <div class="page-overlay"></div>
 
-      <div class="mobile-nav-footer">
-        <a href="index.html" class="mobile-nav-logo">
-          <img
-            src="assets\images\icons\maroon-logo-footer.svg"
-            alt="Maroon Logo"
-          />
-          </a>
-        <div class="mobile-nav-socials">
-          <a href="#" aria-label="Instagram"
-            ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
-          /></a>
-          <a href="#" aria-label="Shopee"
-            ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
-          /></a>
-          <a href="#" aria-label="Facebook"
-            ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
-          /></a>
-        </div>
-      </div>
-    </nav>
+  <div class="search-overlay" id="search-overlay">
+    <button class="close-search" aria-label="Đóng tìm kiếm">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <form action="/search" method="get" class="search-overlay-form">
+      <input
+        type="search"
+        name="q"
+        placeholder="Tìm kiếm sản phẩm bạn muốn..."
+        autofocus
+      />
+      <button type="submit">Tìm kiếm</button>
+    </form>
+  </div>
 
-    <div class="page-overlay"></div>
-
-    <div class="search-overlay" id="search-overlay">
-      <button class="close-search" aria-label="Đóng tìm kiếm">
+  <div class="contact-widget-container">
+    <div class="contact-options">
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact on Zalo"
+      >
+        <img src="assets/images/icons/zalo-icon-contact.svg" alt="Zalo" />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact on Messenger"
+      >
+        <img
+          src="assets/images/icons/messenger-icon-contact.svg"
+          alt="Messenger"
+        />
+      </a>
+      <button id="contact-close-button" aria-label="Close contact options">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -75,7 +136,7 @@
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
+          stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
@@ -83,202 +144,300 @@
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
-      <form action="/search" method="get" class="search-overlay-form">
-        <input
-          type="search"
-          name="q"
-          placeholder="Tìm kiếm sản phẩm bạn muốn..."
-          autofocus
-        />
-        <button type="submit">Tìm kiếm</button>
-      </form>
     </div>
 
-    <div class="contact-widget-container">
-        <div class="contact-options">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Contact on Zalo">
-                <img src="assets/images/icons/zalo-icon-contact.svg" alt="Zalo" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Contact on Messenger">
-                <img src="assets/images/icons/messenger-icon-contact.svg" alt="Messenger" />
-            </a>
-            <button id="contact-close-button" aria-label="Close contact options">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-
-        <button class="contact-toggle-button" aria-label="Open contact options">
-            <img src="assets/images/icons/head-set-icon-contact.svg" alt="Contact Us" />
-        </button>
-    </div>
+    <button class="contact-toggle-button" aria-label="Open contact options">
+      <img
+        src="assets/images/icons/head-set-icon-contact.svg"
+        alt="Contact Us"
+      />
+    </button>
+  </div>
   <body>
     <!-- ==========================================================================
        HEADER (Copied from index.html)
        ========================================================================== -->
     <header class="site-header">
-        <div class="header-top">
-            <div class="container header-top-container">
-                <button class="mobile-menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="main-navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <a href="index.html" class="logo">
-                    <img src="assets/images/icons/maroon-logo.svg" alt="Maroon Logo" />
-                </a>
-                <div class="header-actions">
-                    <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
-                        <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
-                        <span class="cart-count">0</span>
-                    </a>
-                    <button class="search-toggle" aria-label="Mở tìm kiếm" aria-controls="search-overlay">
-                        <img src="assets/images/icons/maroon-search.svg" alt="Search Icon" />
-                    </button>
-                </div>
-            </div>
+      <div class="header-top">
+        <div class="container header-top-container">
+          <button
+            class="mobile-menu-toggle"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <a href="index.html" class="logo">
+            <img src="assets/images/icons/maroon-logo.svg" alt="Maroon Logo" />
+          </a>
+          <div class="header-actions">
+            <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
+              <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
+              <span class="cart-count">0</span>
+            </a>
+            <button
+              class="search-toggle"
+              aria-label="Mở tìm kiếm"
+              aria-controls="search-overlay"
+            >
+              <img
+                src="assets/images/icons/maroon-search.svg"
+                alt="Search Icon"
+              />
+            </button>
+          </div>
         </div>
-        <div class="header-bottom">
-            <nav class="main-navigation-desktop" aria-label="Main navigation">
-                <ul>
-                    <li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">Về Maroon</a></li>
-                    <li class="nav-item"><a href="products.html" class="nav-link active">Sản Phẩm</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Chính sách</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Tin Tức</a></li>
-                </ul>
-            </nav>
-        </div>
+      </div>
+      <div class="header-bottom">
+        <nav class="main-navigation-desktop" aria-label="Main navigation">
+          <ul>
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">Về Maroon</a>
+            </li>
+            <li class="nav-item">
+              <a href="products.html" class="nav-link active">Sản Phẩm</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Chính sách</a>
+            </li>
+            <li class="nav-item">
+              <a href="blog.html" class="nav-link">Tin Tức</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-
-    <!-- Mobile Navigation (Copied from index.html) -->
-    <nav class="mobile-navigation" id="main-navigation" aria-label="Mobile navigation">
-        <!-- ... (Your existing mobile nav code) ... -->
-    </nav>
-    <div class="page-overlay"></div>
-    <div class="search-overlay" id="search-overlay">
-        <!-- ... (Your existing search overlay code) ... -->
-    </div>
 
     <!-- ==========================================================================
        MAIN CONTENT - PRODUCT PAGE
        ========================================================================== -->
     <main class="page-products">
-        <!-- The main content area that gets pushed by the filter sidebar on desktop -->
-        <div class="content-wrap">
-            <div class="container">
-                <nav class="breadcrumbs" aria-label="Breadcrumb">
-                    <a href="index.html">Trang chủ</a>
-                    <span>/</span>
-                    <span>Sản phẩm</span>
-                </nav>
+      <!-- The main content area that gets pushed by the filter sidebar on desktop -->
+      <div class="content-wrap">
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span>/</span>
+            <span>Sản phẩm</span>
+          </nav>
 
-                <h1 class="page-title">Sản Phẩm</h1>
+          <h1 class="page-title">Sản Phẩm</h1>
 
-                <div class="product-toolbar">
-                    <button class="filter-toggle-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-                        <span>Bộ lọc</span>
-                    </button>
-                    <p class="results-count">Hiển thị 1–12 của 16 kết quả</p>
-                    <div class="sort-by-container">
-                        <select id="sort-by" class="sort-by-select" aria-label="Sort products">
-                            <option value="default">Thứ tự mặc định</option>
-                            <option value="price-asc">Thứ tự theo giá: thấp đến cao</option>
-                            <option value="price-desc">Thứ tự theo giá: cao đến thấp</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="product-grid-main" class="product-grid-main">
-                    <!-- Products will be dynamically inserted here by JavaScript -->
-                </div>
-
-                <nav class="pagination" aria-label="Pagination">
-                    <!-- Pagination links can be added here if needed -->
-                </nav>
+          <div class="product-toolbar">
+            <button class="filter-toggle-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+              <span>Bộ lọc</span>
+            </button>
+            <p class="results-count">Hiển thị 1–12 của 16 kết quả</p>
+            <div class="sort-by-container">
+              <select
+                id="sort-by"
+                class="sort-by-select"
+                aria-label="Sort products"
+              >
+                <option value="default">Thứ tự mặc định</option>
+                <option value="price-asc">Thứ tự theo giá: thấp đến cao</option>
+                <option value="price-desc">
+                  Thứ tự theo giá: cao đến thấp
+                </option>
+              </select>
             </div>
+          </div>
+
+          <div id="product-grid-main" class="product-grid-main">
+            <!-- Products will be dynamically inserted here by JavaScript -->
+          </div>
+
+          <nav class="pagination" aria-label="Pagination">
+            <!-- Pagination links can be added here if needed -->
+          </nav>
         </div>
+      </div>
     </main>
 
     <!-- ==========================================================================
        FILTER SIDEBAR (This is the panel that slides in)
        ========================================================================== -->
     <aside class="filter-sidebar" id="filter-sidebar">
-        <div class="filter-header">
-            <h2>Bộ Lọc</h2>
-            <button class="close-filter-btn" aria-label="Đóng bộ lọc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
+      <div class="filter-header">
+        <h2>Bộ Lọc</h2>
+        <button class="close-filter-btn" aria-label="Đóng bộ lọc">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="filter-content">
+        <div class="filter-group">
+          <h3>Dáng Kính</h3>
+          <label
+            ><input type="checkbox" name="shape" value="Browline" />
+            Browline</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Chữ Nhật" /> Chữ
+            Nhật</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Đa Giác" /> Đa
+            Giác</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Hình Oval" /> Hình
+            Oval</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Hình Tròn" /> Hình
+            Tròn</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Hình Vuông" /> Hình
+            Vuông</label
+          >
+          <label
+            ><input type="checkbox" name="shape" value="Mắt Mèo" /> Mắt
+            Mèo</label
+          >
         </div>
-        <div class="filter-content">
-            <div class="filter-group">
-                <h3>Dáng Kính</h3>
-                <label><input type="checkbox" name="shape" value="Browline"> Browline</label>
-                <label><input type="checkbox" name="shape" value="Chữ Nhật"> Chữ Nhật</label>
-                <label><input type="checkbox" name="shape" value="Đa Giác"> Đa Giác</label>
-                <label><input type="checkbox" name="shape" value="Hình Oval"> Hình Oval</label>
-                <label><input type="checkbox" name="shape" value="Hình Tròn"> Hình Tròn</label>
-                <label><input type="checkbox" name="shape" value="Hình Vuông"> Hình Vuông</label>
-                <label><input type="checkbox" name="shape" value="Mắt Mèo"> Mắt Mèo</label>
-            </div>
-            <div class="filter-group">
-                <h3>Chất liệu</h3>
-                <label><input type="checkbox" name="material" value="Acetate"> Acetate</label>
-                <label><input type="checkbox" name="material" value="Kim loại"> Kim loại</label>
-                <label><input type="checkbox" name="material" value="Nhựa"> Nhựa</label>
-                <label><input type="checkbox" name="material" value="Nhựa Dẻo"> Nhựa Dẻo</label>
-                <label><input type="checkbox" name="material" value="Nhựa pha kim loại"> Nhựa pha kim loại</label>
-                <label><input type="checkbox" name="material" value="Titan"> Titan</label>
-            </div>
-            <div class="filter-group">
-                <h3>Giá</h3>
-                <label><input type="checkbox" name="price" value="0-200000"> ~200k</label>
-                <label><input type="checkbox" name="price" value="200000-300000"> 200k - 300k</label>
-                <label><input type="checkbox" name="price" value="300001-9999999"> > 300k</label>
-            </div>
+        <div class="filter-group">
+          <h3>Chất liệu</h3>
+          <label
+            ><input type="checkbox" name="material" value="Acetate" />
+            Acetate</label
+          >
+          <label
+            ><input type="checkbox" name="material" value="Kim loại" /> Kim
+            loại</label
+          >
+          <label
+            ><input type="checkbox" name="material" value="Nhựa" /> Nhựa</label
+          >
+          <label
+            ><input type="checkbox" name="material" value="Nhựa Dẻo" /> Nhựa
+            Dẻo</label
+          >
+          <label
+            ><input type="checkbox" name="material" value="Nhựa pha kim loại" />
+            Nhựa pha kim loại</label
+          >
+          <label
+            ><input type="checkbox" name="material" value="Titan" />
+            Titan</label
+          >
         </div>
-        <div class="filter-footer">
-            <button class="btn btn-primary" id="apply-filters">Áp dụng</button>
-            <button class="btn btn-secondary" id="clear-filters">Xóa bộ lọc</button>
+        <div class="filter-group">
+          <h3>Giá</h3>
+          <label
+            ><input type="checkbox" name="price" value="0-200000" />
+            ~200k</label
+          >
+          <label
+            ><input type="checkbox" name="price" value="200000-300000" /> 200k -
+            300k</label
+          >
+          <label
+            ><input type="checkbox" name="price" value="300001-9999999" /> >
+            300k</label
+          >
         </div>
+      </div>
+      <div class="filter-footer">
+        <button class="btn btn-primary" id="apply-filters">Áp dụng</button>
+        <button class="btn btn-secondary" id="clear-filters">Xóa bộ lọc</button>
+      </div>
     </aside>
     <div class="filter-overlay"></div>
 
-      <section class="process-section">
-        <div class="container process-container">
-          <a href="#" class="process-item">
-            <img src="assets/images/icons/free-ship-toan-quoc.svg" alt="Free Shipping Toàn Quốc" class="icon-shipping" loading="lazy" />
-            <p>Free ship toàn quốc</p>
-          </a>
-          <a href="#" class="process-item">
-            <img src="assets/images/icons/doi-tra-15-ngay.svg" alt="Đổi Trả 15 Ngày" class="icon-bag" loading="lazy" />
-            <p>Đổi trả 15 ngày</p>
-          </a>
-          <a href="#" class="process-item">
-            <img src="assets/images/icons/bao-hanh-3-thang.svg" alt="Bảo Hành 3 Tháng" class="icon-shield" loading="lazy" />
-            <p>Bảo hành 3 tháng</p>
-          </a>
-        </div>
-      </section>
+    <section class="process-section">
+      <div class="container process-container">
+        <a href="#" class="process-item">
+          <img
+            src="assets/images/icons/free-ship-toan-quoc.svg"
+            alt="Free Shipping Toàn Quốc"
+            class="icon-shipping"
+            loading="lazy"
+          />
+          <p>Free ship toàn quốc</p>
+        </a>
+        <a href="#" class="process-item">
+          <img
+            src="assets/images/icons/doi-tra-15-ngay.svg"
+            alt="Đổi Trả 15 Ngày"
+            class="icon-bag"
+            loading="lazy"
+          />
+          <p>Đổi trả 15 ngày</p>
+        </a>
+        <a href="#" class="process-item">
+          <img
+            src="assets/images/icons/bao-hanh-3-thang.svg"
+            alt="Bảo Hành 3 Tháng"
+            class="icon-shield"
+            loading="lazy"
+          />
+          <p>Bảo hành 3 tháng</p>
+        </a>
+      </div>
+    </section>
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-about">
           <a href="index.html" class="footer-logo">
-            <img src="assets\images\icons\maroon-logo-footer.svg" alt="Maroon Logo" loading="lazy" />
+            <img
+              src="assets\images\icons\maroon-logo-footer.svg"
+              alt="Maroon Logo"
+              loading="lazy"
+            />
           </a>
           <div class="footer-socials">
-          <a href="#" aria-label="Instagram"
-            ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
-          /></a>
-          <a href="#" aria-label="Shopee"
-            ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
-          /></a>
-          <a href="#" aria-label="Facebook"
-            ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
-          /></a>
+            <a href="#" aria-label="Instagram"
+              ><img
+                src="assets/images/icons/instagram-icon.svg"
+                alt="Instagram"
+            /></a>
+            <a href="#" aria-label="Shopee"
+              ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
+            /></a>
+            <a href="#" aria-label="Facebook"
+              ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
+            /></a>
           </div>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
@@ -294,7 +453,11 @@
           <h4>THÔNG TIN LIÊN HỆ</h4>
           <ul>
             <li><a href="tel:0347125600">034 712 5600</a></li>
-            <li><a href="mailto:kinhmatmaroon@gmail.com">kinhmatmaroon@gmail.com</a></li>
+            <li>
+              <a href="mailto:kinhmatmaroon@gmail.com"
+                >kinhmatmaroon@gmail.com</a
+              >
+            </li>
           </ul>
         </div>
       </div>
