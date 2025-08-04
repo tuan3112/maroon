@@ -1613,7 +1613,6 @@ body.filter-open {
   gap: 1rem;
   font: var(--font-m-h3);
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--clr-gray-bright);
 }
 .modal-header img {
   height: 32px;
@@ -1708,6 +1707,54 @@ body.filter-open {
 }
 .cart-icon.shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+/* --- Order Summary in Modal --- */
+.modal-order-summary {
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--clr-gray-bright);
+}
+
+.summary-title {
+    font: var(--font-subtitle);
+    margin-bottom: 1rem;
+}
+
+/* UPDATED RULE */
+.summary-row {
+    display: grid;
+    /* Change 'auto' to a fixed width like '120px' for perfect alignment */
+    grid-template-columns: 1fr 40px 120px; /* Name | Quantity | Price */
+    gap: 1rem;
+    align-items: center;
+    font: var(--font-body2);
+    margin-bottom: 0.5rem;
+}
+
+.summary-row .item-name {
+    color: var(--clr-black);
+}
+
+/* UPDATED RULE */
+.summary-row .item-qty {
+    color: var(--clr-gray);
+    text-align: center; /* Center the quantity number */
+}
+
+/* UPDATED RULE */
+.summary-row .item-price {
+    color: var(--clr-black);
+    font-weight: 500;
+    text-align: right; /* Align price to the right */
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font: var(--font-subtitle);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--clr-main);
 }
 /* ==========================================================================
    17. RELATED PRODUCTS SECTION (Carousel Version)

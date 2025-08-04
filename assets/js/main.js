@@ -492,104 +492,127 @@ document.addEventListener("DOMContentLoaded", () => {
 // or inside the DOMContentLoaded event listener.
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- PRODUCT DETAIL PAGE SCRIPT ---
-  // First, check if we are on the product detail page.
-  const productDetailLayout = document.querySelector(".product-detail-layout");
-  if (!productDetailLayout) {
-    return; // Exit if not on the product detail page
-  }
 
-  // --- 1. Image Gallery ---
-  const mainImage = document.getElementById("main-product-image");
-  const thumbnails = document.querySelectorAll(".thumbnail-img");
-  const prevBtn = document.querySelector(".gallery-nav.prev");
-  const nextBtn = document.querySelector(".gallery-nav.next");
-  let currentImageIndex = 0;
-
-  function updateGallery(index) {
-    // Update main image
-    mainImage.src = thumbnails[index].dataset.src;
-
-    // Update active thumbnail
-    thumbnails.forEach((thumb) => thumb.classList.remove("active"));
-    thumbnails[index].classList.add("active");
-
-    currentImageIndex = index;
-  }
-
-  thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener("click", () => updateGallery(index));
-  });
-
-  prevBtn.addEventListener("click", () => {
-    let newIndex =
-      (currentImageIndex - 1 + thumbnails.length) % thumbnails.length;
-    updateGallery(newIndex);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    let newIndex = (currentImageIndex + 1) % thumbnails.length;
-    updateGallery(newIndex);
-  });
-
-  // --- 2. Quantity Selector ---
-  const minusBtn = document.querySelector(".quantity-btn.minus");
-  const plusBtn = document.querySelector(".quantity-btn.plus");
-  const quantityInput = document.getElementById("quantity-input");
-
-  minusBtn.addEventListener("click", () => {
-    let currentValue = parseInt(quantityInput.value);
-    if (currentValue > 1) {
-      quantityInput.value = currentValue - 1;
+    // --- PRODUCT DETAIL PAGE SCRIPT ---
+    const productDetailLayout = document.querySelector('.product-detail-layout');
+    if (!productDetailLayout) {
+        return; // Exit if not on the product detail page
     }
-  });
 
-  plusBtn.addEventListener("click", () => {
-    let currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
-  });
+    // --- 1. Image Gallery ---
+    // ... (Your existing image gallery code remains unchanged) ...
+    const mainImage = document.getElementById('main-product-image');
+    const thumbnails = document.querySelectorAll('.thumbnail-img');
+    const prevBtn = document.querySelector('.gallery-nav.prev');
+    const nextBtn = document.querySelector('.gallery-nav.next');
+    let currentImageIndex = 0;
 
-  // --- 3. Modal & Checkout Logic ---
-  const modalOverlay = document.getElementById("modal-overlay");
-  const customerInfoModal = document.getElementById("customer-info-modal");
-  const paymentSuccessModal = document.getElementById("payment-success-modal");
-  const cartModal = document.getElementById("cart-modal");
-  const buyNowBtn = document.querySelector(".btn-buy-now");
-  const addToCartBtn = document.querySelector(".btn-add-to-cart");
-  const headerCartIcon = document.querySelector(".header-actions .cart-icon");
+    function updateGallery(index) {
+        mainImage.src = thumbnails[index].dataset.src;
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
+        thumbnails[index].classList.add('active');
+        currentImageIndex = index;
+    }
 
-  function openModal(modal) {
-    modalOverlay.classList.add("is-open");
-    modal.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-  }
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => updateGallery(index));
+    });
+    prevBtn.addEventListener('click', () => updateGallery((currentImageIndex - 1 + thumbnails.length) % thumbnails.length));
+    nextBtn.addEventListener('click', () => updateGallery((currentImageIndex + 1) % thumbnails.length));
 
-  function closeModal(modal) {
-    modalOverlay.classList.remove("is-open");
-    modal.classList.remove("is-open");
-    document.body.style.overflow = "";
-  }
 
-  modalOverlay.addEventListener("click", () => {
-    closeModal(customerInfoModal);
-    closeModal(paymentSuccessModal);
-    closeModal(cartModal);
-  });
+    // --- 2. Quantity Selector ---
+    // ... (Your existing quantity selector code remains unchanged) ...
+    const minusBtn = document.querySelector('.quantity-btn.minus');
+    const plusBtn = document.querySelector('.quantity-btn.plus');
+    const quantityInput = document.getElementById('quantity-input');
 
-  // --- Dynamic Modal Content ---
-  function getCustomerInfoHTML() {
-    return `
+    minusBtn.addEventListener('click', () => {
+        let val = parseInt(quantityInput.value);
+        if (val > 1) quantityInput.value = val - 1;
+    });
+    plusBtn.addEventListener('click', () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    });
+
+
+    // --- 3. Modal & Checkout Logic (UPDATED) ---
+    const modalOverlay = document.getElementById('modal-overlay');
+    const customerInfoModal = document.getElementById('customer-info-modal');
+    const paymentSuccessModal = document.getElementById('payment-success-modal');
+    const cartModal = document.getElementById('cart-modal');
+    const buyNowBtn = document.querySelector('.btn-buy-now');
+    const addToCartBtn = document.querySelector('.btn-add-to-cart');
+    const headerCartIcon = document.querySelector('.header-actions .cart-icon');
+
+    function openModal(modal) {
+        modalOverlay.classList.add('is-open');
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+        modalOverlay.classList.remove('is-open');
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+    
+    modalOverlay.addEventListener('click', () => {
+        closeModal(customerInfoModal);
+        closeModal(paymentSuccessModal);
+        closeModal(cartModal);
+    });
+
+    // --- Dynamic Modal Content (UPDATED FUNCTION) ---
+    function getCustomerInfoHTML(productData) {
+        // Calculate totals
+        const subtotal = productData.price * productData.quantity;
+        const shipping = 20000; // Example shipping fee
+        const discount = -20000; // Example discount
+        const total = subtotal + shipping + discount;
+
+        // Function to format numbers as currency
+        const formatCurrency = (num) => num.toLocaleString('vi-VN') + ' VNĐ';
+
+        return `
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="assets/images/icons/maroon-logo.svg" alt="Maroon Icon" style="height: 24px; filter: invert(1);">
-                    <h2>Chốt đơn! 😉</h2>
+                    <img src="assets/images/icons/icon-logo-maroon.svg" alt="Maroon Icon" style="height: 24px;">
+                    <h2>Chốt đê! </h2>
+                    <img src="assets/images/icons/harry-face-icon.svg" alt="Harry Face Icon"/>
                     <button class="modal-close-btn" id="close-customer-info">&times;</button>
                 </div>
-                <div class="order-summary">...</div>
+                
+                <!-- NEW: Order Summary Section -->
+                <div class="modal-order-summary">
+                    <h3 class="summary-title">Tổng tiền hàng</h3>
+                    <div class="summary-row">
+                        <span class="item-name">${productData.name}</span>
+                        <span class="item-qty">${productData.quantity}</span>
+                        <span class="item-price">${formatCurrency(subtotal)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="item-name">Phí vận chuyển</span>
+                        <span class="item-qty">1</span>
+                        <span class="item-price">${formatCurrency(shipping)}</span>
+                    </div>
+                     <div class="summary-row">
+                        <span class="item-name">Ưu đãi phí vận chuyển</span>
+                        <span class="item-qty">1</span>
+                        <span class="item-price">${formatCurrency(discount)}</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Thành tiền</span>
+                        <span>${formatCurrency(total)}</span>
+                    </div>
+                </div>
+
                 <form class="customer-info-form">
                     <div class="form-group"><label for="d-name">Họ Tên*</label><input type="text" id="d-name" placeholder="Họ và tên đầy đủ" required></div>
                     <div class="form-group"><label for="d-phone">Điện Thoại*</label><input type="tel" id="d-phone" placeholder="Số điện thoại nhận hàng" required></div>
                     <div class="form-group"><label for="d-address">Địa Chỉ*</label><input type="text" id="d-address" placeholder="Địa chỉ nhận hàng" required></div>
+                    <div class="form-group"><label for="notes">Ghi Chú</label><input type="text" id="notes" placeholder="Ghi chú" /></div>
+                    <div class="form-group"><label for="voucher">Mã Voucher</label><input type="text" id="voucher" placeholder="Mã Voucher" /></div>
                     <div class="form-actions">
                         <button type="button" class="btn btn-secondary" id="cancel-checkout">Quay Lại</button>
                         <button type="button" class="btn btn-primary" id="confirm-checkout">Chốt Luôn</button>
@@ -597,74 +620,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 </form>
             </div>
         `;
-  }
-
-  function getPaymentSuccessHTML() {
-    return `
-            <div class="modal-content page-centered-message">
-                 <button class="modal-close-btn" style="position:absolute; top:1rem; right:1rem;" id="close-success">&times;</button>
-                 <div class="success-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                </div>
-                <h1>Cảm ơn bạn!</h1>
-                <p>Maroon sẽ liên hệ với bạn để xác nhận đơn hàng.</p>
-                <button class="btn btn-primary" id="back-to-home">Quay Lại Trang Chủ</button>
-            </div>
-        `;
-  }
-
-  function getCartHTML() {
-    return `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Giỏ hàng</h2>
-                    <button class="modal-close-btn" id="close-cart">&times;</button>
-                </div>
-                <p>Sản phẩm đã được thêm vào giỏ hàng!</p>
-                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="continue-shopping">Tiếp tục mua sắm</button>
-                    <a href="#" class="btn btn-primary">Xem giỏ hàng</a>
-                </div>
-            </div>
-        `;
-  }
+    }
 
   // --- Event Listeners for Buttons ---
-  buyNowBtn.addEventListener("click", () => {
-    if (window.innerWidth < 1024) {
-      // Mobile: Go to separate page
-      window.location.href = "customer-info.html";
-    } else {
-      // Desktop: Open modal
-      customerInfoModal.innerHTML = getCustomerInfoHTML();
-      openModal(customerInfoModal);
+    buyNowBtn.addEventListener('click', () => {
+        if (window.innerWidth < 1024) {
+            window.location.href = 'customer-info.html';
+        } else {
+            // Get current product data from the page
+            const productData = {
+                name: document.querySelector('.product-title-detail').textContent,
+                price: parseFloat(document.querySelector('.current-price').textContent.replace(/[^0-9]/g, '')),
+                quantity: parseInt(quantityInput.value)
+            };
+            
+            // Build the modal with the data
+            customerInfoModal.innerHTML = getCustomerInfoHTML(productData);
+            openModal(customerInfoModal);
 
-      // Add event listeners for the new modal buttons
-      document
-        .getElementById("close-customer-info")
-        .addEventListener("click", () => closeModal(customerInfoModal));
-      document
-        .getElementById("cancel-checkout")
-        .addEventListener("click", () => closeModal(customerInfoModal));
-      document
-        .getElementById("confirm-checkout")
-        .addEventListener("click", () => {
-          closeModal(customerInfoModal);
-          paymentSuccessModal.innerHTML = getPaymentSuccessHTML();
-          openModal(paymentSuccessModal);
-
-          document
-            .getElementById("close-success")
-            .addEventListener("click", () => closeModal(paymentSuccessModal));
-          document
-            .getElementById("back-to-home")
-            .addEventListener(
-              "click",
-              () => (window.location.href = "index.html")
-            );
-        });
-    }
-  });
+            // Add event listeners for the new modal buttons
+            document.getElementById('close-customer-info').addEventListener('click', () => closeModal(customerInfoModal));
+            document.getElementById('cancel-checkout').addEventListener('click', () => closeModal(customerInfoModal));
+            document.getElementById('confirm-checkout').addEventListener('click', () => {
+                closeModal(customerInfoModal);
+                // ... (logic for success modal)
+            });
+        }
+    });
 
   addToCartBtn.addEventListener("click", () => {
     // 1. Animate cart icon
