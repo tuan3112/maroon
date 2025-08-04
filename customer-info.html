@@ -217,9 +217,30 @@
           alt="Harry Face Icon"
         />
       </h1>
-      <div class="order-summary">
-        <!-- Order summary content -->
+      <!-- NEW: Order Summary Section -->
+      <div class="order-summary-box">
+        <h3 class="summary-title">Tổng tiền hàng</h3>
+        <div class="summary-row">
+          <span class="item-name">Kính mắt abc</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">200.000 VNĐ</span>
+        </div>
+        <div class="summary-row">
+          <span class="item-name">Phí vận chuyển</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">20.000 VNĐ</span>
+        </div>
+        <div class="summary-row">
+          <span class="item-name">Ưu đãi phí vận chuyển</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">-20.000 VNĐ</span>
+        </div>
+        <div class="summary-total">
+          <span>Thành tiền</span>
+          <span>200.000 VNĐ</span>
+        </div>
       </div>
+
       <form class="customer-info-form">
         <div class="form-group">
           <label for="name">Họ Tên*</label>
@@ -311,5 +332,11 @@
         </div>
       </div>
     </footer>
+    <!-- MODALS AND OVERLAYS (Hidden by default) -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="customer-info-modal"></div>
+    <div class="modal" id="payment-success-modal"></div>
+    <div class="modal" id="cart-modal"></div>
+    <div id="toast-notification" class="toast-notification"></div>
   </body>
 </html>

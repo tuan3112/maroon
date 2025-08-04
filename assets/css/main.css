@@ -1710,51 +1710,56 @@ body.filter-open {
 }
 /* --- Order Summary in Modal --- */
 .modal-order-summary {
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--clr-gray-bright);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--clr-gray-bright);
 }
 
 .summary-title {
-    font: var(--font-subtitle);
-    margin-bottom: 1rem;
+  font: var(--font-subtitle);
+  margin-bottom: 1rem;
 }
 
 /* UPDATED RULE */
 .summary-row {
-    display: grid;
-    /* Change 'auto' to a fixed width like '120px' for perfect alignment */
-    grid-template-columns: 1fr 40px 120px; /* Name | Quantity | Price */
-    gap: 1rem;
-    align-items: center;
-    font: var(--font-body2);
-    margin-bottom: 0.5rem;
+  display: grid;
+  /* Change 'auto' to a fixed width like '120px' for perfect alignment */
+  grid-template-columns: 1fr 40px 120px; /* Name | Quantity | Price */
+  gap: 1rem;
+  align-items: center;
+  font: var(--font-body2);
+  margin-bottom: 0.5rem;
 }
 
 .summary-row .item-name {
-    color: var(--clr-black);
+  color: var(--clr-black);
 }
 
 /* UPDATED RULE */
 .summary-row .item-qty {
-    color: var(--clr-gray);
-    text-align: center; /* Center the quantity number */
+  color: var(--clr-gray);
+  text-align: center; /* Center the quantity number */
 }
 
 /* UPDATED RULE */
 .summary-row .item-price {
-    color: var(--clr-black);
-    font-weight: 500;
-    text-align: right; /* Align price to the right */
+  color: var(--clr-black);
+  font-weight: 500;
+  text-align: right; /* Align price to the right */
 }
 
 .summary-total {
-    display: flex;
-    justify-content: space-between;
-    font: var(--font-subtitle);
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--clr-main);
+  display: flex;
+  justify-content: space-between;
+  font: var(--font-subtitle);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--clr-main);
+}
+.order-summary-box {
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--clr-gray-bright);
 }
 /* ==========================================================================
    17. RELATED PRODUCTS SECTION (Carousel Version)
@@ -1849,4 +1854,31 @@ body.filter-open {
   .slider-arrow {
     display: block; /* Show arrows on desktop */
   }
+}
+/* ==========================================================================
+   18. CUSTOM TOAST NOTIFICATION
+   ========================================================================== */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 150%); /* Bắt đầu ở vị trí ẩn bên dưới màn hình */
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 5000;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.21, 1.02, 0.73, 1),
+    opacity 0.4s ease;
+  font: var(--font-label);
+  text-align: center;
+}
+
+.toast-notification.is-visible {
+  transform: translate(-50%, 0); /* Di chuyển lên vị trí hiển thị */
+  opacity: 1;
+  visibility: visible;
 }

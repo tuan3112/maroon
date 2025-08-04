@@ -492,189 +492,326 @@ document.addEventListener("DOMContentLoaded", () => {
 // or inside the DOMContentLoaded event listener.
 
 document.addEventListener("DOMContentLoaded", () => {
+  // ==========================================================================
+  // --- 1. GLOBAL SCRIPTS (Run on all pages) ---
+  // ==========================================================================
 
-    // --- PRODUCT DETAIL PAGE SCRIPT ---
-    const productDetailLayout = document.querySelector('.product-detail-layout');
-    if (!productDetailLayout) {
-        return; // Exit if not on the product detail page
-    }
+  // --- Mobile Menu, Search, Contact Widget ---
+  // (This is your existing, working code for these features)
+  const menuToggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.querySelector(".mobile-navigation");
+  const pageOverlay = document.querySelector(".page-overlay");
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", () => {
+      document.body.classList.toggle("mobile-menu-open");
+    });
+    pageOverlay.addEventListener("click", () => {
+      document.body.classList.remove("mobile-menu-open");
+    });
+  }
+  // ... add other global scripts like search and contact widget here ...
 
-    // --- 1. Image Gallery ---
-    // ... (Your existing image gallery code remains unchanged) ...
-    const mainImage = document.getElementById('main-product-image');
-    const thumbnails = document.querySelectorAll('.thumbnail-img');
-    const prevBtn = document.querySelector('.gallery-nav.prev');
-    const nextBtn = document.querySelector('.gallery-nav.next');
+  // --- Toast Notification Handler ---
+  const toastNotification = document.getElementById("toast-notification");
+  let toastTimeout;
+  function showToast(message) {
+    if (!toastNotification) return;
+    clearTimeout(toastTimeout);
+    toastNotification.textContent = message;
+    toastNotification.classList.add("is-visible");
+    toastTimeout = setTimeout(() => {
+      toastNotification.classList.remove("is-visible");
+    }, 3000);
+  }
+
+  // --- Global Cart Icon Handler ---
+  const headerCartIconGlobal = document.querySelector(
+    ".header-actions .cart-icon"
+  );
+  if (headerCartIconGlobal) {
+    headerCartIconGlobal.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (window.innerWidth < 1024) {
+        // On mobile, always go to the cart page
+        window.location.href = "cart.html";
+      } else {
+        // On desktop, always open the modal
+        const cartModal = document.getElementById("cart-modal");
+        const productDetailLayout = document.querySelector(
+          ".product-detail-layout"
+        );
+        let productData = null;
+
+        // Check if we are on the product detail page to get data
+        if (productDetailLayout) {
+          productData = {
+            name: document.querySelector(".product-title-detail").textContent,
+            price: parseFloat(
+              document
+                .querySelector(".current-price")
+                .textContent.replace(/[^0-9]/g, "")
+            ),
+            quantity: parseInt(document.getElementById("quantity-input").value),
+          };
+        }
+
+        // Generate and show the modal
+        cartModal.innerHTML = getCartHTML(productData);
+        openModal(cartModal);
+        attachCartModalListeners(productData);
+      }
+    });
+  }
+
+  // ==========================================================================
+  // --- 2. PAGE-SPECIFIC SCRIPTS ---
+  // ==========================================================================
+
+  // --- Product Detail Page Logic ---
+  const productDetailLayout = document.querySelector(".product-detail-layout");
+  if (productDetailLayout) {
+    // --- Image Gallery ---
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumbnail-img");
+    const prevBtn = document.querySelector(".gallery-nav.prev");
+    const nextBtn = document.querySelector(".gallery-nav.next");
     let currentImageIndex = 0;
-
     function updateGallery(index) {
-        mainImage.src = thumbnails[index].dataset.src;
-        thumbnails.forEach(thumb => thumb.classList.remove('active'));
-        thumbnails[index].classList.add('active');
-        currentImageIndex = index;
+      mainImage.src = thumbnails[index].dataset.src;
+      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
+      thumbnails[index].classList.add("active");
+      currentImageIndex = index;
     }
-
     thumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', () => updateGallery(index));
+      thumbnail.addEventListener("click", () => updateGallery(index));
     });
-    prevBtn.addEventListener('click', () => updateGallery((currentImageIndex - 1 + thumbnails.length) % thumbnails.length));
-    nextBtn.addEventListener('click', () => updateGallery((currentImageIndex + 1) % thumbnails.length));
+    prevBtn.addEventListener("click", () =>
+      updateGallery(
+        (currentImageIndex - 1 + thumbnails.length) % thumbnails.length
+      )
+    );
+    nextBtn.addEventListener("click", () =>
+      updateGallery((currentImageIndex + 1) % thumbnails.length)
+    );
 
-
-    // --- 2. Quantity Selector ---
-    // ... (Your existing quantity selector code remains unchanged) ...
-    const minusBtn = document.querySelector('.quantity-btn.minus');
-    const plusBtn = document.querySelector('.quantity-btn.plus');
-    const quantityInput = document.getElementById('quantity-input');
-
-    minusBtn.addEventListener('click', () => {
-        let val = parseInt(quantityInput.value);
-        if (val > 1) quantityInput.value = val - 1;
+    // --- Quantity Selector ---
+    const minusBtn = document.querySelector(".quantity-btn.minus");
+    const plusBtn = document.querySelector(".quantity-btn.plus");
+    const quantityInput = document.getElementById("quantity-input");
+    minusBtn.addEventListener("click", () => {
+      let val = parseInt(quantityInput.value);
+      if (val > 1) quantityInput.value = val - 1;
     });
-    plusBtn.addEventListener('click', () => {
-        quantityInput.value = parseInt(quantityInput.value) + 1;
-    });
-
-
-    // --- 3. Modal & Checkout Logic (UPDATED) ---
-    const modalOverlay = document.getElementById('modal-overlay');
-    const customerInfoModal = document.getElementById('customer-info-modal');
-    const paymentSuccessModal = document.getElementById('payment-success-modal');
-    const cartModal = document.getElementById('cart-modal');
-    const buyNowBtn = document.querySelector('.btn-buy-now');
-    const addToCartBtn = document.querySelector('.btn-add-to-cart');
-    const headerCartIcon = document.querySelector('.header-actions .cart-icon');
-
-    function openModal(modal) {
-        modalOverlay.classList.add('is-open');
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(modal) {
-        modalOverlay.classList.remove('is-open');
-        modal.classList.remove('is-open');
-        document.body.style.overflow = '';
-    }
-    
-    modalOverlay.addEventListener('click', () => {
-        closeModal(customerInfoModal);
-        closeModal(paymentSuccessModal);
-        closeModal(cartModal);
+    plusBtn.addEventListener("click", () => {
+      quantityInput.value = parseInt(quantityInput.value) + 1;
     });
 
-    // --- Dynamic Modal Content (UPDATED FUNCTION) ---
-    function getCustomerInfoHTML(productData) {
-        // Calculate totals
-        const subtotal = productData.price * productData.quantity;
-        const shipping = 20000; // Example shipping fee
-        const discount = -20000; // Example discount
-        const total = subtotal + shipping + discount;
+    // --- "Buy Now" and "Add to Cart" Buttons ---
+    const buyNowBtn = document.querySelector(".btn-buy-now");
+    const addToCartBtn = document.querySelector(".btn-add-to-cart");
 
-        // Function to format numbers as currency
-        const formatCurrency = (num) => num.toLocaleString('vi-VN') + ' VNĐ';
+    buyNowBtn.addEventListener("click", () => {
+      if (window.innerWidth < 1024) {
+        window.location.href = "customer-info.html";
+      } else {
+        const productData = {
+          name: document.querySelector(".product-title-detail").textContent,
+          price: parseFloat(
+            document
+              .querySelector(".current-price")
+              .textContent.replace(/[^0-9]/g, "")
+          ),
+          quantity: parseInt(quantityInput.value),
+        };
+        const customerInfoModal = document.getElementById(
+          "customer-info-modal"
+        );
+        customerInfoModal.innerHTML = getCustomerInfoHTML(productData);
+        openModal(customerInfoModal);
+        attachCustomerInfoListeners();
+      }
+    });
 
-        return `
+    addToCartBtn.addEventListener("click", () => {
+      headerCartIconGlobal.classList.add("shake");
+      setTimeout(() => headerCartIconGlobal.classList.remove("shake"), 820);
+      const cartCount = headerCartIconGlobal.querySelector(".cart-count");
+      cartCount.textContent =
+        parseInt(cartCount.textContent) + parseInt(quantityInput.value);
+      showToast(`${quantityInput.value} sản phẩm đã được thêm vào giỏ hàng!`);
+    });
+  }
+
+  // --- Related Products Carousel Logic ---
+  const relatedSliderWrapper = document.querySelector(
+    ".related-products-section .slider-wrapper"
+  );
+  if (relatedSliderWrapper) {
+    // ... (The related products carousel script you already have) ...
+  }
+
+  // ==========================================================================
+  // --- 3. HELPER FUNCTIONS (for Modals) ---
+  // ==========================================================================
+  const modalOverlay = document.getElementById("modal-overlay");
+
+  function openModal(modal) {
+    if (!modal || !modalOverlay) return;
+    modalOverlay.classList.add("is-open");
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(modal) {
+    if (!modal || !modalOverlay) return;
+    modalOverlay.classList.remove("is-open");
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  // Close any open modal when overlay is clicked
+  if (modalOverlay) {
+    modalOverlay.addEventListener("click", () => {
+      const openModals = document.querySelectorAll(".modal.is-open");
+      openModals.forEach(closeModal);
+    });
+  }
+
+  function getCustomerInfoHTML(productData) {
+    const subtotal = productData.price * productData.quantity;
+    const shipping = 20000;
+    const discount = -20000;
+    const total = subtotal + shipping + discount;
+    const formatCurrency = (num) => num.toLocaleString("vi-VN") + " VNĐ";
+    return `
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header">                    
                     <img src="assets/images/icons/icon-logo-maroon.svg" alt="Maroon Icon" style="height: 24px;">
                     <h2>Chốt đê! </h2>
                     <img src="assets/images/icons/harry-face-icon.svg" alt="Harry Face Icon"/>
                     <button class="modal-close-btn" id="close-customer-info">&times;</button>
-                </div>
-                
-                <!-- NEW: Order Summary Section -->
-                <div class="modal-order-summary">
+                    </div>
+                <div class="order-summary-box">
                     <h3 class="summary-title">Tổng tiền hàng</h3>
-                    <div class="summary-row">
-                        <span class="item-name">${productData.name}</span>
-                        <span class="item-qty">${productData.quantity}</span>
-                        <span class="item-price">${formatCurrency(subtotal)}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="item-name">Phí vận chuyển</span>
-                        <span class="item-qty">1</span>
-                        <span class="item-price">${formatCurrency(shipping)}</span>
-                    </div>
-                     <div class="summary-row">
-                        <span class="item-name">Ưu đãi phí vận chuyển</span>
-                        <span class="item-qty">1</span>
-                        <span class="item-price">${formatCurrency(discount)}</span>
-                    </div>
-                    <div class="summary-total">
-                        <span>Thành tiền</span>
-                        <span>${formatCurrency(total)}</span>
-                    </div>
+                    <div class="summary-row"><span class="item-name">${
+                      productData.name
+                    }</span><span class="item-qty">${
+      productData.quantity
+    }</span><span class="item-price">${formatCurrency(subtotal)}</span></div>
+                    <div class="summary-row"><span class="item-name">Phí vận chuyển</span><span class="item-qty">1</span><span class="item-price">${formatCurrency(
+                      shipping
+                    )}</span></div>
+                    <div class="summary-row"><span class="item-name">Ưu đãi</span><span class="item-qty">1</span><span class="item-price">${formatCurrency(
+                      discount
+                    )}</span></div>
+                    <div class="summary-total"><span>Thành tiền</span><span>${formatCurrency(
+                      total
+                    )}</span></div>
                 </div>
-
                 <form class="customer-info-form">
-                    <div class="form-group"><label for="d-name">Họ Tên*</label><input type="text" id="d-name" placeholder="Họ và tên đầy đủ" required></div>
-                    <div class="form-group"><label for="d-phone">Điện Thoại*</label><input type="tel" id="d-phone" placeholder="Số điện thoại nhận hàng" required></div>
-                    <div class="form-group"><label for="d-address">Địa Chỉ*</label><input type="text" id="d-address" placeholder="Địa chỉ nhận hàng" required></div>
-                    <div class="form-group"><label for="notes">Ghi Chú</label><input type="text" id="notes" placeholder="Ghi chú" /></div>
-                    <div class="form-group"><label for="voucher">Mã Voucher</label><input type="text" id="voucher" placeholder="Mã Voucher" /></div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" id="cancel-checkout">Quay Lại</button>
-                        <button type="button" class="btn btn-primary" id="confirm-checkout">Chốt Luôn</button>
-                    </div>
+                    <div class="form-group"><label>Họ Tên*</label><input type="text" placeholder="Họ và tên đầy đủ" required></div>
+                    <div class="form-group"><label>Điện Thoại*</label><input type="tel" placeholder="Số điện thoại nhận hàng" required></div>
+                    <div class="form-group"><label>Địa Chỉ*</label><input type="text" placeholder="Địa chỉ nhận hàng" required></div>
+                    <div class="form-actions"><button type="button" class="btn btn-secondary" id="cancel-checkout">Quay Lại</button><button type="button" class="btn btn-primary" id="confirm-checkout">Chốt Luôn</button></div>
                 </form>
-            </div>
-        `;
+            </div>`;
+  }
+
+  function getPaymentSuccessHTML() {
+    return `
+            <div class="modal-content page-centered-message">
+                 <button class="modal-close-btn" style="position:absolute; top:1rem; right:1rem;" id="close-success">&times;</button>
+                 <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                <h1>Cảm ơn bạn!</h1><p>Maroon sẽ liên hệ với bạn để xác nhận đơn hàng.</p>
+                <button class="btn btn-primary" id="back-to-home">Quay Lại Trang Chủ</button>
+            </div>`;
+  }
+
+  function getCartHTML(productData) {
+    if (!productData) {
+      return `
+                <div class="modal-content">
+                    <div class="modal-header"><h2>Giỏ hàng</h2><button class="modal-close-btn" id="close-cart">&times;</button></div>
+                    <p style="text-align:center; padding: 2rem 0;">Giỏ hàng của bạn đang trống.</p>
+                    <div class="form-actions"><a href="products.html" class="btn btn-primary" style="width:100%; justify-content:center;">Bắt đầu mua sắm</a></div>
+                </div>`;
     }
+    const subtotal = productData.price * productData.quantity;
+    const shipping = 20000;
+    const discount = -20000;
+    const total = subtotal + shipping + discount;
+    const formatCurrency = (num) => num.toLocaleString("vi-VN") + " VNĐ";
+    return `
+            <div class="modal-content">
+                <div class="modal-header"><h2>Giỏ hàng</h2><button class="modal-close-btn" id="close-cart">&times;</button></div>
+                <div class="order-summary-box">
+                    <div class="summary-row"><span class="item-name">${
+                      productData.name
+                    }</span><span class="item-qty">${
+      productData.quantity
+    }</span><span class="item-price">${formatCurrency(subtotal)}</span></div>
+                    <div class="summary-total"><span>Tổng tạm tính</span><span>${formatCurrency(
+                      total
+                    )}</span></div>
+                </div>
+                 <div class="form-actions"><button type="button" class="btn btn-secondary" id="continue-shopping">Quay lại</button><button type="button" class="btn btn-primary" id="checkout-from-cart">Chốt đê</button></div>
+            </div>`;
+  }
 
-  // --- Event Listeners for Buttons ---
-    buyNowBtn.addEventListener('click', () => {
-        if (window.innerWidth < 1024) {
-            window.location.href = 'customer-info.html';
-        } else {
-            // Get current product data from the page
-            const productData = {
-                name: document.querySelector('.product-title-detail').textContent,
-                price: parseFloat(document.querySelector('.current-price').textContent.replace(/[^0-9]/g, '')),
-                quantity: parseInt(quantityInput.value)
-            };
-            
-            // Build the modal with the data
-            customerInfoModal.innerHTML = getCustomerInfoHTML(productData);
-            openModal(customerInfoModal);
+  function attachCustomerInfoListeners() {
+    const customerInfoModal = document.getElementById("customer-info-modal");
+    const paymentSuccessModal = document.getElementById(
+      "payment-success-modal"
+    );
+    document
+      .getElementById("close-customer-info")
+      .addEventListener("click", () => closeModal(customerInfoModal));
+    document
+      .getElementById("cancel-checkout")
+      .addEventListener("click", () => closeModal(customerInfoModal));
+    document
+      .getElementById("confirm-checkout")
+      .addEventListener("click", () => {
+        closeModal(customerInfoModal);
+        paymentSuccessModal.innerHTML = getPaymentSuccessHTML();
+        openModal(paymentSuccessModal);
+        document
+          .getElementById("close-success")
+          .addEventListener("click", () => closeModal(paymentSuccessModal));
+        document
+          .getElementById("back-to-home")
+          .addEventListener(
+            "click",
+            () => (window.location.href = "index.html")
+          );
+      });
+  }
 
-            // Add event listeners for the new modal buttons
-            document.getElementById('close-customer-info').addEventListener('click', () => closeModal(customerInfoModal));
-            document.getElementById('cancel-checkout').addEventListener('click', () => closeModal(customerInfoModal));
-            document.getElementById('confirm-checkout').addEventListener('click', () => {
-                closeModal(customerInfoModal);
-                // ... (logic for success modal)
-            });
-        }
-    });
-
-  addToCartBtn.addEventListener("click", () => {
-    // 1. Animate cart icon
-    headerCartIcon.classList.add("shake");
-    setTimeout(() => headerCartIcon.classList.remove("shake"), 820);
-
-    // 2. Update cart count (simple example)
-    const cartCount = headerCartIcon.querySelector(".cart-count");
-    let count = parseInt(cartCount.textContent);
-    cartCount.textContent = count + parseInt(quantityInput.value);
-
-    // 3. Show a confirmation (could be a small toast message or a modal)
-    alert(`${quantityInput.value} sản phẩm đã được thêm vào giỏ hàng!`);
-  });
-
-  headerCartIcon.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent link from navigating
-    cartModal.innerHTML = getCartHTML();
-    openModal(cartModal);
-
+  function attachCartModalListeners(productData) {
+    const cartModal = document.getElementById("cart-modal");
     document
       .getElementById("close-cart")
       .addEventListener("click", () => closeModal(cartModal));
-    document
-      .getElementById("continue-shopping")
-      .addEventListener("click", () => closeModal(cartModal));
-  });
+
+    const continueBtn = document.getElementById("continue-shopping");
+    if (continueBtn)
+      continueBtn.addEventListener("click", () => closeModal(cartModal));
+
+    const checkoutBtn = document.getElementById("checkout-from-cart");
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener("click", () => {
+        closeModal(cartModal);
+        const customerInfoModal = document.getElementById(
+          "customer-info-modal"
+        );
+        customerInfoModal.innerHTML = getCustomerInfoHTML(productData);
+        openModal(customerInfoModal);
+        attachCustomerInfoListeners();
+      });
+    }
+  }
 });
+
 // --- Carousel for RELATED Products Container ---
 // Find the wrapper for the related products slider
 const relatedSliderWrapper = document.querySelector(

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thanh Toán Thành Công - Maroon</title>
+    <title>Giỏ Hàng - Maroon</title>
     <link
       rel="icon"
       href="assets/images/icons/favicon-maroon.ico"
@@ -20,6 +20,7 @@
   </head>
   <body>
     <!-- HEADER -->
+    <header class="site-header">
     <header class="site-header">
       <div class="header-top">
         <div class="container header-top-container">
@@ -203,31 +204,43 @@
         />
       </button>
     </div>
+    <main class="container page-form">
+      <h1 class="form-title">
+        <img src="assets/images/icons/icon-logo-maroon.svg" alt="Maroon Icon" style="height: 24px;">
+        Giỏ Hàng
+      </h1>
 
-    <main class="container page-centered-message">
-      <div class="success-icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="80"
-          height="80"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#28a745"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-        </svg>
+      <!-- Order Summary Section -->
+      <div class="order-summary-box">
+        <h3 class="summary-title">Tổng tiền hàng</h3>
+        <div class="summary-row">
+          <span class="item-name">Kính mắt abc</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">200.000 VNĐ</span>
+        </div>
+        <div class="summary-row">
+          <span class="item-name">Phí vận chuyển</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">20.000 VNĐ</span>
+        </div>
+        <div class="summary-row">
+          <span class="item-name">Ưu đãi phí vận chuyển</span>
+          <span class="item-qty">1</span>
+          <span class="item-price">-20.000 VNĐ</span>
+        </div>
+        <div class="summary-total">
+          <span>Thành tiền</span>
+          <span>200.000 VNĐ</span>
+        </div>
       </div>
-      <h1>Cảm ơn bạn đã để lại thông tin!</h1>
-      <p>
-        Maroon sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.
-      </p>
-      <a href="index.html" class="btn btn-primary">Quay Lại Trang Chủ</a>
+
+      <div class="form-actions">
+        <a href="products.html" class="btn btn-secondary">Tiếp tục mua sắm</a>
+        <a href="customer-info.html" class="btn btn-primary">Chốt đê</a>
+      </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-about">
@@ -274,7 +287,8 @@
         </div>
       </div>
     </footer>
-    <!-- MODALS AND OVERLAYS (Hidden by default) -->
+
+    <!-- MODAL PLACEHOLDERS (Still needed for the header to work) -->
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal" id="customer-info-modal"></div>
     <div class="modal" id="payment-success-modal"></div>
