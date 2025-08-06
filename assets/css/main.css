@@ -1882,3 +1882,149 @@ body.filter-open {
   opacity: 1;
   visibility: visible;
 }
+/* ==========================================================================
+   19. BLOG CATEGORY PAGE
+   ========================================================================== */
+
+.blog-category-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column on mobile */
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.blog-post-card-category {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f7f5f2;
+}
+
+.blog-post-card-category a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+/* Card style for mobile and top of desktop */
+.blog-post-card-category:not(.list-style-post) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-post-card-category:not(.list-style-post) .post-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  color: var(--clr-white);
+}
+
+.post-category-tag {
+  font: var(--font-caption-semibold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-card-category:not(.list-style-post) h3 {
+  font: var(--font-m-h3);
+}
+
+/* List style for desktop - default is now mobile first */
+.list-style-post {
+  background-color: transparent;
+}
+.list-style-post a {
+  display: flex;
+  flex-direction: column; /* Stack image and text on mobile */
+  gap: 1rem;
+}
+.post-image-list img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Makes it square on mobile */
+  object-fit: cover;
+  border-radius: 12px;
+}
+.post-content-list {
+  color: var(--clr-black);
+}
+.post-content-list h3 {
+  font: var(--font-m-h3);
+  margin-bottom: 0.5rem;
+}
+.post-excerpt {
+  font: var(--font-body2);
+  color: var(--clr-gray);
+  margin: 0.5rem 0;
+  display: none; /* Hide excerpt on mobile by default */
+}
+.read-more-link {
+  font: var(--font-label);
+  color: var(--clr-main);
+  text-decoration: underline;
+}
+
+/* Desktop Layout Adjustments */
+@media (min-width: 1024px) {
+  .blog-category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Define the complex grid layout */
+    grid-template-areas:
+      "featured regular1"
+      "featured regular2"
+      "list1 list1"
+      "list2 list2";
+    gap: 1.5rem;
+  }
+
+  /* Assign posts to grid areas */
+  .featured-post-category {
+    grid-area: featured;
+  }
+  .blog-post-card-category:nth-child(2) {
+    grid-area: regular1;
+  }
+  .blog-post-card-category:nth-child(3) {
+    grid-area: regular2;
+  }
+  .blog-post-card-category:nth-child(4) {
+    grid-area: list1;
+  }
+  .blog-post-card-category:nth-child(5) {
+    grid-area: list2;
+  }
+
+  /* --- Set Specific Aspect Ratios for Desktop Cards --- */
+  .featured-post-category {
+    aspect-ratio: 530 / 540;
+  }
+  .blog-post-card-category:nth-child(2) {
+    aspect-ratio: 530 / 260;
+  }
+  .blog-post-card-category:nth-child(3) {
+    aspect-ratio: 255 / 260;
+  }
+
+  /* --- Adjust List Style for Desktop --- */
+  .list-style-post a {
+    flex-direction: row; /* Side-by-side on desktop */
+    align-items: flex-start; /* Align items to the top */
+    gap: 1.5rem;
+  }
+  .post-image-list {
+    flex: 0 0 300px; /* Fixed width for the image */
+  }
+  .post-excerpt {
+    display: block; /* Show excerpt on desktop */
+  }
+}
