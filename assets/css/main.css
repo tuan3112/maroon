@@ -14,6 +14,11 @@
   12. Contact Widget
   13. Footer Styles
   14. Responsive Media Queries
+  15. Product Category Page
+  16. Product Detail Page & Modals
+  17. Related Products Section
+  18. Custom Toast Notification
+  19. Blog Page Styles
 */
 
 /* ==========================================================================
@@ -659,50 +664,28 @@ body.mobile-menu-open {
   text-align: center;
   margin-top: var(--spacing-lg);
 }
-/* .instagram-explore .btn { display: inline-flex; align-items: center; gap: 0.5rem;}
-.btn-icon {
-  height: 1.2em;
-  width: 1.2em;
-  transition: filter 0.3s ease; Keeps the smooth transition 
-}
-.btn-primary:hover .btn-icon {
-  filter: invert(1);
-} */
-/* On hover, text becomes dark, so remove the filter to make icon dark too */
-/* .instagram-explore .btn:hover .btn-icon { background-color: transparent; color: var(--clr-secondary);} */
-
 .instagram-explore .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* This is the new rule for your icon */
 .btn-icon {
   display: inline-block;
   height: 1.2em;
   width: 1.2em;
-
-  /* Set the default icon color (white) */
   background-color: var(--clr-white);
-
-  /* Use your icon file as the mask */
   -webkit-mask-image: url("../images/icons/instagram-feed-section-icon.svg");
   mask-image: url("../images/icons/instagram-feed-section-icon.svg");
-
-  /* Ensure the icon fits perfectly */
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-
-  /* Smooth transition for the color change */
   transition: background-color 0.3s ease;
 }
 
-/* On hover, change the icon's background-color to your main color */
 .btn-primary:hover .btn-icon {
   background-color: var(--clr-main);
 }
@@ -710,7 +693,6 @@ body.mobile-menu-open {
 /* ==========================================================================
    11. BLOG SECTION
    ========================================================================== */
-/* FIX 2: Adjusted mobile styles */
 .blog-section {
   padding: var(--spacing-xl) 0;
   background-color: var(--clr-white);
@@ -775,8 +757,6 @@ body.mobile-menu-open {
 .blog-pagination {
   display: none; /* Hide dots as requested */
 }
-
-/* ==========================================================================
 
 /* ==========================================================================
    12. CONTACT WIDGET
@@ -898,7 +878,6 @@ body.mobile-menu-open {
   width: 32px;
   height: 32px;
 }
-/* FIX 5: Styles for inline SVG icons */
 .social-icon {
   width: 100%;
   height: 100%;
@@ -955,23 +934,17 @@ body.mobile-menu-open {
    14. RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 
-/* FIX 3: Added rule for very small screens to prevent header breaking */
 @media (max-width: 430px) {
-  /* Make the logo even smaller */
   .logo img {
-    height: 18px; /* Changed from 32px */
+    height: 18px;
   }
-
-  /* Reduce the gap between icons and the size of the icons */
   .header-actions {
-    gap: 0.5rem; /* Changed from 0.75rem (12px) to 8px */
+    gap: 0.5rem;
   }
   .search-toggle img,
   .cart-icon img {
-    height: 24px; /* Added this rule to shrink the icons from 28px */
+    height: 24px;
   }
-
-  /* Pull the hamburger menu to the very edge to gain space */
   .mobile-menu-toggle {
     margin-left: 0;
   }
@@ -991,8 +964,6 @@ body.mobile-menu-open {
     width: 64px;
     height: 8px;
   }
-
-  /* FIX 4: Desktop styles for About Us section */
   .about-us-summary {
     padding: 100px 180px;
   }
@@ -1026,8 +997,6 @@ body.mobile-menu-open {
     top: 0;
     left: 210px;
   }
-
-  /* FIX 1: Desktop styles for Product section */
   .product-section {
     padding: var(--spacing-xl) 180px;
   }
@@ -1049,7 +1018,6 @@ body.mobile-menu-open {
     padding: 0;
     cursor: default;
   }
-
   .process-section {
     padding: var(--spacing-xl) 180px;
   }
@@ -1058,7 +1026,6 @@ body.mobile-menu-open {
     justify-content: space-around;
     gap: var(--spacing-xl);
   }
-
   .instagram-section {
     padding: var(--spacing-xl) 180px;
   }
@@ -1070,8 +1037,6 @@ body.mobile-menu-open {
   .instagram-post:nth-child(n) {
     grid-column: auto;
   }
-
-  /* FIX 2: Desktop styles for Blog section */
   .blog-section {
     padding: var(--spacing-xl) 180px;
   }
@@ -1122,7 +1087,6 @@ body.mobile-menu-open {
   .featured-post .post-content h3 {
     font-size: 2rem;
   }
-
   .site-footer {
     padding: 64px 180px;
   }
@@ -1156,6 +1120,7 @@ body.mobile-menu-open {
     margin: 0 0 32px 0;
   }
 }
+
 /* ==========================================================================
    15. PRODUCT CATEGORY PAGE
    ========================================================================== */
@@ -1883,154 +1848,124 @@ body.filter-open {
   visibility: visible;
 }
 /* ==========================================================================
-   19. BLOG PAGE STYLES (Combined & Optimized)
+   19. BLOG PAGE STYLES
    ========================================================================== */
 
-/* --- Base Styles for Blog Section on All Pages --- */
-.blog-section,
-.blog-category-page-main { /* A new wrapper class for blog.html's main content */
-    padding: var(--spacing-xl) 0;
+.blog-list-section {
+  padding: var(--spacing-xl) 0;
 }
 
-.blog-section .container,
-.blog-category-page-main .container {
-    padding: 0 16px;
+.blog-category-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column on mobile */
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
-/* --- Main Grid Container for All Blog Posts --- */
-.blog-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile-first: 1 column */
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+.blog-post-card-category {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f7f5f2;
 }
 
-/* --- General Card Styles (from your working code) --- */
-.blog-post-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    display: block;
+.blog-post-card-category a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
 }
 
-.blog-post-card a {
-    text-decoration: none;
-    color: var(--clr-white);
-    display: block;
-    width: 100%;
-    height: 100%;
+/* Card style for mobile and top of desktop */
+.blog-post-card-category:not(.list-style-post) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.blog-post-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+.blog-post-card-category:not(.list-style-post) .post-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  color: var(--clr-white);
 }
 
-.blog-post-card:hover img {
-    transform: scale(1.05);
+.post-category-tag {
+  font: var(--font-caption-semibold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
-.post-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: 2;
+.blog-post-card-category:not(.list-style-post) h3 {
+  font: var(--font-m-h3);
 }
 
-.post-content h3 {
-    font: var(--font-m-h3);
-    margin-bottom: 0.5rem;
-}
-
-.post-meta {
-    font: var(--font-caption);
-    color: var(--clr-gray-bright);
-}
-
-
-/* --- List Style Posts (for blog.html) --- */
+/* List style for desktop - default is now mobile first */
 .list-style-post {
-    background-color: transparent;
+  background-color: transparent;
 }
 .list-style-post a {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    color: var(--clr-black); /* Text should be dark */
+  display: flex;
+  flex-direction: column; /* Stack image and text on mobile */
+  gap: 1rem;
 }
-.list-style-post .post-image-list img {
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
+.post-image-list {
+  width: 100%;
+}
+.post-image-list img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.5 / 1; /* Wider image for list view */
+  object-fit: cover;
+  border-radius: 12px;
+}
+.post-content-list {
+  color: var(--clr-black);
+}
+.post-content-list h3 {
+  font: var(--font-m-h3);
+  margin-bottom: 0.5rem;
 }
 .post-excerpt {
-    font: var(--font-body2);
-    color: var(--clr-gray);
-    margin: 0.5rem 0;
-    display: none; /* Hide on mobile */
+  font: var(--font-body2);
+  color: var(--clr-gray);
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .read-more-link {
-    font: var(--font-label);
-    color: var(--clr-main);
-    text-decoration: underline;
+  font: var(--font-label);
+  color: var(--clr-main);
+  text-decoration: underline;
 }
 
-
-/* --- Desktop Layouts --- */
+/* Desktop Layout Adjustments */
 @media (min-width: 1024px) {
-    /* --- Homepage Slider Layout --- */
-    .home-page .blog-grid {
-        overflow: hidden;
-        position: relative;
-    }
-    .home-page .blog-slides-container {
-        display: flex;
-    }
-    .home-page .blog-post-card {
-        flex-shrink: 0;
-        width: 100%;
-    }
-    /* You would add your JS slider logic for this */
+  .blog-category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem; /* Increase gap between list items */
+  }
 
-
-    /* --- Blog Category Page Static Grid Layout --- */
-    .blog-page .blog-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas:
-            "featured regular1"
-            "featured regular2"
-            "list1 list1"
-            "list2 list2";
-        gap: 1.5rem;
-    }
-
-    /* Assign posts to grid areas on blog page */
-    .blog-page .featured-post { grid-area: featured; }
-    .blog-page .blog-post-card:nth-child(2) { grid-area: regular1; }
-    .blog-page .blog-post-card:nth-child(3) { grid-area: regular2; }
-    .blog-page .list-style-post:nth-child(4) { grid-area: list1; }
-    .blog-page .list-style-post:nth-child(5) { grid-area: list2; }
-
-    /* Set aspect ratios for the cards on the blog page */
-    .blog-page .featured-post { aspect-ratio: 530 / 540; }
-    .blog-page .blog-post-card:nth-child(2) { aspect-ratio: 530 / 260; }
-    .blog-page .blog-post-card:nth-child(3) { aspect-ratio: 255 / 260; }
-
-    /* Adjust list style for desktop */
-    .list-style-post a {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 1.5rem;
-    }
-    .list-style-post .post-image-list {
-        flex: 0 0 300px;
-    }
-    .post-excerpt {
-        display: block;
-    }
+  /* --- Adjust List Style for Desktop --- */
+  .list-style-post a {
+    flex-direction: row; /* Side-by-side on desktop */
+    align-items: flex-start; /* Align items to the top */
+    gap: 1.5rem;
+  }
+  .post-image-list {
+    flex: 0 0 300px; /* Fixed width for the image */
+  }
+  .post-excerpt {
+    display: block; /* Show excerpt on desktop */
+  }
 }

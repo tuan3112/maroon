@@ -216,74 +216,134 @@
           <span>Tin tức</span>
         </nav>
         <h1 class="page-title">Talk with Maroon</h1>
+      </div>
 
-        <div class="blog-category-grid">
-            
-            <!-- Card-style posts with new, specific class names -->
-            <article class="blog-post-card category-featured-post">
-                <a href="#">
-                    <img src="assets/images/about-maroon-your-look.JPG" alt="Man wearing sunglasses" loading="lazy" />
-                    <div class="post-content">
-                        <p class="post-category-tag">BẢO VỆ ĐÔI MẮT</p>
-                        <h3>Anh em nghĩ ngợi uống nước</h3>
-                        <p class="post-meta">28/05/2025 | #kinhmat</p>
-                    </div>
+      <!-- This section now uses the same structure as index.html -->
+      <section class="blog-section">
+        <div class="container">
+          <div class="blog-grid">
+            <div class="blog-slides-container">
+              <article class="blog-post-card featured-post">
+                <a
+                  href="blog-post.html"
+                  aria-label="Read more about Mắt Kính Râm Nam Thời Trang"
+                >
+                  <img
+                    src="assets/images/about-maroon-your-look.JPG"
+                    alt="Man wearing sunglasses"
+                    loading="lazy"
+                  />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
                 </a>
-            </article>
-            <article class="blog-post-card category-regular-post-1">
-                <a href="#">
-                    <img src="assets/images/banner-3.JPG" alt="Woman wearing glasses" loading="lazy" />
-                    <div class="post-content">
-                         <p class="post-category-tag">OST MOOD</p>
-                        <h3>Anh em nghĩ ngợi uống nước</h3>
-                        <p class="post-meta">28/05/2025 | #kinhmat</p>
-                    </div>
+              </article>
+              <article class="blog-post-card">
+                <a href="blog-post.html" aria-label="Read more about OST Mood">
+                  <img
+                    src="assets/images/banner-3.JPG"
+                    alt="Woman wearing glasses"
+                    loading="lazy"
+                  />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
                 </a>
-            </article>
-            <article class="blog-post-card category-regular-post-2">
-                <a href="#">
-                    <img src="assets/images/about-maroon-your-story.JPG" alt="Close up of sunglasses" loading="lazy" />
-                    <div class="post-content">
-                        <p class="post-category-tag">BẢO VỆ ĐÔI MẮT</p>
-                        <h3>Anh em nghĩ ngợi uống nước</h3>
-                        <p class="post-meta">28/05/2025 | #kinhmat</p>
-                    </div>
+              </article>
+              <article class="blog-post-card">
+                <a
+                  href="blog-post.html"
+                  aria-label="Read more about Sunglasses"
+                >
+                  <img
+                    src="assets/images/about-maroon-your-story.JPG"
+                    alt="Close up of sunglasses"
+                    loading="lazy"
+                  />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
                 </a>
-            </article>
-
-            <!-- List-style posts, also inside the same container -->
-            <article class="list-style-post">
-                <a href="#">
-                    <div class="post-image-list">
-                        <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Glasses" loading="lazy" />
-                    </div>
-                    <div class="post-content-list">
-                        <h3>Anh em nghĩ ngợi uống nước</h3>
-                        <p class="post-meta">28/05/2025 | #kinhmat</p>
-                        <p class="post-excerpt">Không chỉ mặc đẹp, còn cực kỳ dễ chịu cho mọi hoạt động thường ngày...</p>
-                        <span class="read-more-link">Xem thêm</span>
-                    </div>
+              </article>
+              <article class="blog-post-card">
+                <a
+                  href="blog-post.html"
+                  aria-label="Read more about Glasses on a surface"
+                >
+                  <img
+                    src="assets/images/about-maroon-your-story.JPG"
+                    alt="Glasses on a surface"
+                    loading="lazy"
+                  />
+                  <div class="post-content">
+                    <h3>Anh em nghĩ ngợi uống nước</h3>
+                    <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  </div>
                 </a>
-            </article>
-             <article class="list-style-post">
-                <a href="#">
-                    <div class="post-image-list">
-                        <img src="assets/images/products/kinh-mat-maroon-1.jpg" alt="Glasses" loading="lazy" />
-                    </div>
-                    <div class="post-content-list">
-                        <h3>Anh em nghĩ ngợi uống nước</h3>
-                        <p class="post-meta">28/05/2025 | #kinhmat</p>
-                        <p class="post-excerpt">Không chỉ mặc đẹp, còn cực kỳ dễ chịu cho mọi hoạt động thường ngày...</p>
-                        <span class="read-more-link">Xem thêm</span>
-                    </div>
-                </a>
-            </article>
+              </article>
+            </div>
+          </div>
+          <div class="hero-pagination blog-pagination"></div>
         </div>
+      </section>
 
-        <nav class="pagination" aria-label="Pagination">
+      <!-- This section is for the list-style posts -->
+      <section class="blog-list-section">
+        <div class="container">
+          <div class="blog-category-grid">
+            <!-- List-style posts for desktop -->
+            <article class="blog-post-card-category list-style-post">
+              <a href="#">
+                <div class="post-image-list">
+                  <img
+                    src="assets/images/products/kinh-mat-maroon-1.jpg"
+                    alt="Glasses"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="post-content-list">
+                  <h3>Anh em nghĩ ngợi uống nước</h3>
+                  <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  <p class="post-excerpt">
+                    Không chỉ mặc đẹp, còn cực kỳ dễ chịu cho mọi hoạt động
+                    thường ngày. Đủ ngời hàng chục giờ trên máy bay để đến
+                    Guatemala nhưng...
+                  </p>
+                  <span class="read-more-link">Xem thêm</span>
+                </div>
+              </a>
+            </article>
+            <article class="blog-post-card-category list-style-post">
+              <a href="#">
+                <div class="post-image-list">
+                  <img
+                    src="assets/images/products/kinh-mat-maroon-1.jpg"
+                    alt="Glasses"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="post-content-list">
+                  <h3>Anh em nghĩ ngợi uống nước</h3>
+                  <p class="post-meta">28/05/2025 | #kinhmat</p>
+                  <p class="post-excerpt">
+                    Không chỉ mặc đẹp, còn cực kỳ dễ chịu cho mọi hoạt động
+                    thường ngày. Đủ ngời hàng chục giờ trên máy bay để đến
+                    Guatemala nhưng...
+                  </p>
+                  <span class="read-more-link">Xem thêm</span>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <nav class="pagination" aria-label="Pagination">
             <!-- Pagination links can be added here -->
-        </nav>
-    </div>
+          </nav>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER (Same as other pages) -->
