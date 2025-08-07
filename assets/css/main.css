@@ -1883,148 +1883,154 @@ body.filter-open {
   visibility: visible;
 }
 /* ==========================================================================
-   19. BLOG CATEGORY PAGE
+   19. BLOG PAGE STYLES (Combined & Optimized)
    ========================================================================== */
 
-.blog-category-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* 1 column on mobile */
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
+/* --- Base Styles for Blog Section on All Pages --- */
+.blog-section,
+.blog-category-page-main { /* A new wrapper class for blog.html's main content */
+    padding: var(--spacing-xl) 0;
 }
 
-.blog-post-card-category {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #f7f5f2;
+.blog-section .container,
+.blog-category-page-main .container {
+    padding: 0 16px;
 }
 
-.blog-post-card-category a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  height: 100%;
+/* --- Main Grid Container for All Blog Posts --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: 1 column */
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
-/* Card style for mobile and top of desktop */
-.blog-post-card-category:not(.list-style-post) img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* --- General Card Styles (from your working code) --- */
+.blog-post-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
 }
 
-.blog-post-card-category:not(.list-style-post) .post-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  color: var(--clr-white);
+.blog-post-card a {
+    text-decoration: none;
+    color: var(--clr-white);
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
-.post-category-tag {
-  font: var(--font-caption-semibold);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+.blog-post-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.blog-post-card-category:not(.list-style-post) h3 {
-  font: var(--font-m-h3);
+.blog-post-card:hover img {
+    transform: scale(1.05);
 }
 
-/* List style for desktop - default is now mobile first */
+.post-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 2;
+}
+
+.post-content h3 {
+    font: var(--font-m-h3);
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    font: var(--font-caption);
+    color: var(--clr-gray-bright);
+}
+
+
+/* --- List Style Posts (for blog.html) --- */
 .list-style-post {
-  background-color: transparent;
+    background-color: transparent;
 }
 .list-style-post a {
-  display: flex;
-  flex-direction: column; /* Stack image and text on mobile */
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--clr-black); /* Text should be dark */
 }
-.post-image-list img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1; /* Makes it square on mobile */
-  object-fit: cover;
-  border-radius: 12px;
-}
-.post-content-list {
-  color: var(--clr-black);
-}
-.post-content-list h3 {
-  font: var(--font-m-h3);
-  margin-bottom: 0.5rem;
+.list-style-post .post-image-list img {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
 }
 .post-excerpt {
-  font: var(--font-body2);
-  color: var(--clr-gray);
-  margin: 0.5rem 0;
-  display: none; /* Hide excerpt on mobile by default */
+    font: var(--font-body2);
+    color: var(--clr-gray);
+    margin: 0.5rem 0;
+    display: none; /* Hide on mobile */
 }
 .read-more-link {
-  font: var(--font-label);
-  color: var(--clr-main);
-  text-decoration: underline;
+    font: var(--font-label);
+    color: var(--clr-main);
+    text-decoration: underline;
 }
 
-/* Desktop Layout Adjustments */
+
+/* --- Desktop Layouts --- */
 @media (min-width: 1024px) {
-  .blog-category-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Define the complex grid layout */
-    grid-template-areas:
-      "featured regular1"
-      "featured regular2"
-      "list1 list1"
-      "list2 list2";
-    gap: 1.5rem;
-  }
+    /* --- Homepage Slider Layout --- */
+    .home-page .blog-grid {
+        overflow: hidden;
+        position: relative;
+    }
+    .home-page .blog-slides-container {
+        display: flex;
+    }
+    .home-page .blog-post-card {
+        flex-shrink: 0;
+        width: 100%;
+    }
+    /* You would add your JS slider logic for this */
 
-  /* Assign posts to grid areas */
-  .featured-post-category {
-    grid-area: featured;
-  }
-  .blog-post-card-category:nth-child(2) {
-    grid-area: regular1;
-  }
-  .blog-post-card-category:nth-child(3) {
-    grid-area: regular2;
-  }
-  .blog-post-card-category:nth-child(4) {
-    grid-area: list1;
-  }
-  .blog-post-card-category:nth-child(5) {
-    grid-area: list2;
-  }
 
-  /* --- Set Specific Aspect Ratios for Desktop Cards --- */
-  .featured-post-category {
-    aspect-ratio: 530 / 540;
-  }
-  .blog-post-card-category:nth-child(2) {
-    aspect-ratio: 530 / 260;
-  }
-  .blog-post-card-category:nth-child(3) {
-    aspect-ratio: 255 / 260;
-  }
+    /* --- Blog Category Page Static Grid Layout --- */
+    .blog-page .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "featured regular1"
+            "featured regular2"
+            "list1 list1"
+            "list2 list2";
+        gap: 1.5rem;
+    }
 
-  /* --- Adjust List Style for Desktop --- */
-  .list-style-post a {
-    flex-direction: row; /* Side-by-side on desktop */
-    align-items: flex-start; /* Align items to the top */
-    gap: 1.5rem;
-  }
-  .post-image-list {
-    flex: 0 0 300px; /* Fixed width for the image */
-  }
-  .post-excerpt {
-    display: block; /* Show excerpt on desktop */
-  }
+    /* Assign posts to grid areas on blog page */
+    .blog-page .featured-post { grid-area: featured; }
+    .blog-page .blog-post-card:nth-child(2) { grid-area: regular1; }
+    .blog-page .blog-post-card:nth-child(3) { grid-area: regular2; }
+    .blog-page .list-style-post:nth-child(4) { grid-area: list1; }
+    .blog-page .list-style-post:nth-child(5) { grid-area: list2; }
+
+    /* Set aspect ratios for the cards on the blog page */
+    .blog-page .featured-post { aspect-ratio: 530 / 540; }
+    .blog-page .blog-post-card:nth-child(2) { aspect-ratio: 530 / 260; }
+    .blog-page .blog-post-card:nth-child(3) { aspect-ratio: 255 / 260; }
+
+    /* Adjust list style for desktop */
+    .list-style-post a {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    .list-style-post .post-image-list {
+        flex: 0 0 300px;
+    }
+    .post-excerpt {
+        display: block;
+    }
 }
