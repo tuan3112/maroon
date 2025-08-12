@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Về Maroon - Maroon</title>
+    <meta
+      name="description"
+      content="Câu chuyện về Maroon - Your Look, Your Story."
+    />
+    <link
+      rel="icon"
+      href="assets/images/icons/favicon-maroon.ico"
+      type="image/x-icon"
+    />
+    <!-- Link to your main stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Link to the new stylesheet for this page -->
+    <link rel="stylesheet" href="assets/css/about.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-top">
+        <div class="container header-top-container">
+          <button
+            class="mobile-menu-toggle"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <a href="index.html" class="logo">
+            <img src="assets/images/icons/maroon-logo.svg" alt="Maroon Logo" />
+          </a>
+
+          <div class="header-actions">
+            <a href="cart.html" class="cart-icon" aria-label="Giỏ hàng">
+              <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
+              <span class="cart-count">0</span>
+            </a>
+            <button
+              class="search-toggle"
+              aria-label="Mở tìm kiếm"
+              aria-controls="search-overlay"
+            >
+              <img
+                src="assets/images/icons/maroon-search.svg"
+                alt="Search Icon"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom">
+        <nav class="main-navigation-desktop" aria-label="Main navigation">
+          <ul>
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link active">Về Maroon</a>
+            </li>
+            <li class="nav-item">
+              <a href="products.html" class="nav-link">Sản Phẩm</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Chính sách</a>
+            </li>
+            <li class="nav-item">
+              <a href="blog.html" class="nav-link">Tin Tức</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION -->
+    <nav
+      class="mobile-navigation"
+      id="main-navigation"
+      aria-label="Mobile navigation"
+    >
+      <div class="mobile-nav-header">
+        <a href="cart.html" class="cart-icon" aria-label="Giỏ hàng">
+          <img src="assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
+          <span class="cart-count">0</span>
+        </a>
+        <button
+          class="search-toggle"
+          aria-label="Mở tìm kiếm"
+          aria-controls="search-overlay"
+        >
+          <img src="assets/images/icons/maroon-search.svg" alt="Search Icon" />
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="about.html">Về Maroon</a></li>
+        <li><a href="products.html">Sản Phẩm</a></li>
+        <li><a href="#">Chính sách</a></li>
+        <li><a href="blog.html">Talk with Maroon</a></li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <a href="index.html" class="mobile-nav-logo">
+          <img
+            src="assets/images/icons/maroon-logo-footer.svg"
+            alt="Maroon Logo"
+          />
+        </a>
+        <div class="mobile-nav-socials">
+          <a href="#" aria-label="Instagram"
+            ><img src="assets/images/icons/instagram-icon.svg" alt="Instagram"
+          /></a>
+          <a href="#" aria-label="Shopee"
+            ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
+          /></a>
+          <a href="#" aria-label="Facebook"
+            ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
+          /></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-overlay"></div>
+
+    <div class="search-overlay" id="search-overlay">
+      <button class="close-search" aria-label="Đóng tìm kiếm">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <form action="/search" method="get" class="search-overlay-form">
+        <input
+          type="search"
+          name="q"
+          placeholder="Tìm kiếm sản phẩm bạn muốn..."
+          autofocus
+        />
+        <button type="submit">Tìm kiếm</button>
+      </form>
+    </div>
+
+    <div class="contact-widget-container">
+      <div class="contact-options">
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contact on Zalo"
+        >
+          <img src="assets/images/icons/zalo-icon-contact.svg" alt="Zalo" />
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contact on Messenger"
+        >
+          <img
+            src="assets/images/icons/messenger-icon-contact.svg"
+            alt="Messenger"
+          />
+        </a>
+        <button id="contact-close-button" aria-label="Close contact options">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <button class="contact-toggle-button" aria-label="Open contact options">
+        <img
+          src="assets/images/icons/head-set-icon-contact.svg"
+          alt="Contact Us"
+        />
+      </button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="about-page">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Trang chủ</a><span>/</span>
+          <span>Về Maroon</span>
+        </nav>
+      </div>
+
+      <section class="about-hero">
+        <div class="about-hero-image"></div>
+        <div class="about-hero-content">
+          <h1>Xin chào, chúng tôi là Maroon!</h1>
+          <p>
+            Chúng tôi tin rằng cá tính của bạn xứng đáng với những thiết kế tinh
+            tế, bền vững và đầy cảm hứng. Không chạy theo những trào lưu nhất
+            thời, Maroon tập trung vào việc tạo ra những chiếc kính có thể đồng
+            hành cùng bạn qua nhiều năm tháng.
+          </p>
+        </div>
+      </section>
+
+      <section class="about-section your-look-section">
+        <div class="container about-section-container">
+          <div class="about-text-content">
+            <h2>“Your look, your story”</h2>
+            <p>
+              Ngay từ lúc lên ý tưởng, chúng tôi luôn tự hỏi: “Làm thế nào để
+              chiếc kính không chỉ đơn thuần là một phụ kiện mà còn là dấu ấn
+              của cá nhân?”
+            </p>
+            <p>
+              Chúng tôi nhận ra rằng ánh nhìn của mỗi người đều khác biệt. Nó
+              không chỉ là một câu chuyện không cần phải kể bằng lời mà còn thể
+              hiện cái cảm nhận, sự tự tin, từ cách họ tự tin đối diện với thế
+              giới.
+            </p>
+          </div>
+          <div class="about-image-content your-look-images">
+            <img
+              src="assets/images/banner-2.JPG"
+              alt="A person trying on glasses"
+              class="your-look-img-1"
+            />
+            <img
+              src="assets/images/products/kinh-mat-maroon-1.jpg"
+              alt="A pair of glasses"
+              class="your-look-img-2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section our-story-section">
+        <div class="container">
+          <h2>Our story</h2>
+          <p>
+            Tết đến nơi, Hà Nội lạnh cắt da, chúng tôi - hai người đồng nghiệp
+            cùng công ty, cách nhà nhau đúng mấy bước chân - hẹn nhau đi cà phê.
+            Trốn việc nhà là chính, còn phụ là bị thuốc lào và cốc cà phê trứng.
+          </p>
+          <p>
+            Vài ba câu chuyện về công việc, sếp và deadline, chúng tôi quay sang
+            hỏi nhau: “Hay là bây giờ anh em mình đi bán kính?”. Tôi nói - “Kinh
+            nghiệm mấy chục năm đeo kính xử lý khủng hoảng truyền thông tốt thế
+            này, không đi kinh doanh thì làm gì?”
+          </p>
+          <p>
+            Thế là ý tưởng về cửa hàng kính xuất hiện, từ những câu chuyện rất
+            đỗi thường ngày.
+          </p>
+        </div>
+      </section>
+
+      <section class="about-section image-grid-section">
+        <div class="container image-grid-container">
+          <img
+            src="assets/images/banner-1.JPG"
+            alt="Behind the scenes at a photoshoot"
+          />
+          <img
+            src="assets/images/banner-3.JPG"
+            alt="A person trying on different glasses"
+          />
+        </div>
+      </section>
+
+      <section class="about-section maroon5-section">
+        <div class="container">
+          <h2>Đây không phải Maroon 5</h2>
+          <p>
+            Lần tiếp theo, khi mà chúng tôi đang lên ý tưởng. Đến đoạn đặt tên
+            thì bắt đầu bí. Chúng tôi bắt đầu liệt kê, Look? - quá nhàm, Eyes? -
+            thiếu các gì đó, quá phổ biến, Optic? - quá khó đọc.
+          </p>
+          <p>
+            Lại một lần tình cờ, khi chúng tôi đang lướt trên Tumblr, ca khúc
+            Payphone của Maroon 5 xuất hiện trong playlist. Thần giao cách cảm
+            là có thật, tôi và anh quay sang nhìn nhau:
+          </p>
+          <p>“Hay là, tên chúng ta nó”, anh nói.</p>
+          <p>“Thế anh em mình tên Payphone nhé?”</p>
+          <p>“???? Maroon chứ ??????”</p>
+          <p>Thế là Maroon ra đời, còn tôi thì bị ăn chửi vì loạn ngôn.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <div class="footer-about">
+          <a href="index.html" class="footer-logo">
+            <img
+              src="assets/images/icons/maroon-logo-footer.svg"
+              alt="Maroon Logo"
+              loading="lazy"
+            />
+          </a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"
+              ><img
+                src="assets/images/icons/instagram-icon.svg"
+                alt="Instagram"
+            /></a>
+            <a href="#" aria-label="Shopee"
+              ><img src="assets/images/icons/shopee-icon.svg" alt="Shopee"
+            /></a>
+            <a href="#" aria-label="Facebook"
+              ><img src="assets/images/icons/facebook-icon.svg" alt="Facebook"
+            /></a>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="about.html">Về Maroon</a></li>
+            <li><a href="products.html">Sản Phẩm</a></li>
+            <li><a href="blog.html">Talk with Maroon</a></li>
+            <li><a href="#">Chính sách</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <h4>THÔNG TIN LIÊN HỆ</h4>
+          <ul>
+            <li><a href="tel:0347125600">034 712 5600</a></li>
+            <li>
+              <a href="mailto:kinhmatmaroon@gmail.com"
+                >kinhmatmaroon@gmail.com</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL PLACEHOLDERS -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="customer-info-modal"></div>
+    <div class="modal" id="payment-success-modal"></div>
+    <div class="modal" id="cart-modal"></div>
+    <div id="toast-notification" class="toast-notification"></div>
+  </body>
+</html>
