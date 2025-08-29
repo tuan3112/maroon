@@ -152,3 +152,85 @@ document.addEventListener("DOMContentLoaded", () => {
       openModal(paymentSuccessModal);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    // --- Your existing code for menu, sliders, pop-ups, etc. goes here ---
+    // ...
+    
+    // ===================================================================
+    //  AJAX PRODUCT FILTER LOGIC (Add this entire section)
+    // ===================================================================
+    const filterSidebar = document.getElementById("filter-sidebar");
+    
+    // Only run this filter code on pages that actually have the filter sidebar
+    if (filterSidebar) { 
+        const filterToggleBtn = document.querySelector(".filter-toggle-btn");
+        const closeFilterBtn = document.querySelector(".close-filter-btn");
+        const filterOverlay = document.querySelector(".filter-overlay");
+        const applyFiltersBtn = document.getElementById("apply-filters");
+        const clearFiltersBtn = document.getElementById("clear-filters");
+        const productGrid = document.getElementById("product-grid-main");
+
+        // Function to open/close the filter panel
+        const toggleFilterPanel = () => {
+            const isMobile = window.innerWidth < 1024;
+            document.body.classList.toggle(isMobile ? "filter-open-mobile" : "filter-open-desktop");
+        };
+        
+        filterToggleBtn.addEventListener("click", toggleFilterPanel);
+        closeFilterBtn.addEventListener("click", toggleFilterPanel);
+        filterOverlay.addEventListener("click", toggleFilterPanel);
+
+        // Main function to perform the AJAX request
+        const performAjaxFilter = () => {
+            // Get all checked values
+            const selectedShapes = Array.from(document.querySelectorAll('input[name="shape"]:checked')).map(el => el.value);
+            const selectedMaterials = Array.from(document.querySelectorAll('input[name="material"]:checked')).map(el => el.value);
+            const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(el => el.value);
+            
+            // Show a loading animation by reducing opacity
+            if(productGrid) {
+                productGrid.style.opacity = '0.5';
+            }
+
+            // Use jQuery to send the AJAX request to WordPress
+            jQuery.ajax({
+                url: maroon_ajax.ajax_url, // This URL is provided by functions.php
+                type: 'post',
+                data: {
+                    action: 'maroon_filter_products', // This matches the action in functions.php
+                    shape: selectedShapes,
+                    material: selectedMaterials,
+                    price: selectedPrices
+                },
+                success: function(response) {
+                    // Replace the product grid with the new HTML from the server
+                    if(productGrid) {
+                        productGrid.innerHTML = response;
+                        productGrid.style.opacity = '1';
+                    }
+                    // Close the filter panel after applying
+                    if (document.body.classList.contains('filter-open-mobile') || document.body.classList.contains('filter-open-desktop')) {
+                        toggleFilterPanel();
+                    }
+                },
+                error: function() {
+                    if(productGrid) {
+                        productGrid.innerHTML = '<p>Something went wrong. Please try again.</p>';
+                        productGrid.style.opacity = '1';
+                    }
+                }
+            });
+        };
+
+        applyFiltersBtn.addEventListener("click", performAjaxFilter);
+
+        clearFiltersBtn.addEventListener("click", () => {
+            // Uncheck all boxes and run the filter again to show all products
+            document.querySelectorAll('.filter-content input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+            performAjaxFilter();
+        });
+    }
+
+    // --- End of the file or the DOMContentLoaded listener ---
+});
