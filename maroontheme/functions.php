@@ -1,15 +1,23 @@
 <?php
+/**
+ * Enqueue scripts and styles for the theme.
+ */
 function maroontheme_enqueue_scripts() {
+    // Enqueue Google Fonts
+    wp_enqueue_style( 'maroon-google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null );
+
     // Enqueue Main Stylesheet
     wp_enqueue_style( 'maroon-main-style', get_stylesheet_uri() );
 
     // Enqueue Main JavaScript. The `true` at the end loads it in the footer.
-    wp_enqueue_script( 'maroon-main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0', true );
+    wp_enqueue_script( 'maroon-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'maroontheme_enqueue_scripts' );
 
-// Add support for Menus
-function register_my_menus() {
+/**
+ * Register navigation menus.
+ */
+function maroontheme_register_menus() {
   register_nav_menus(
     array(
       'main-menu' => __( 'Main Menu' ),
@@ -17,10 +25,10 @@ function register_my_menus() {
     )
   );
 }
-add_action( 'init', 'register_my_menus' );
-?>
+add_action( 'init', 'maroontheme_register_menus' );
+
 /**
- * Ensure cart contents are available on all pages for pop-up modals.
+ * Ensure cart contents update via AJAX.
  */
 function maroon_header_add_to_cart_fragment( $fragments ) {
     ob_start();
@@ -36,7 +44,10 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'maroon_header_add_to_cart_frag
  * AJAX handler to get cart contents for the modal.
  */
 function maroon_get_cart_for_modal() {
-    echo wc_get_template_part( 'cart/cart' );
+    // This will get the cart template part from WooCommerce
+    if ( function_exists( 'woocommerce_mini_cart' ) ) {
+        woocommerce_mini_cart();
+    }
     wp_die();
 }
 add_action( 'wp_ajax_maroon_get_cart_for_modal', 'maroon_get_cart_for_modal' );
@@ -49,8 +60,8 @@ function maroon_filter_products_handler() {
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 12,
-        'tax_query' => array('relation' => 'AND'), // Ensure all conditions are met
-        'meta_query' => array() // For price filtering
+        'tax_query' => array('relation' => 'AND'),
+        'meta_query' => array('relation' => 'AND')
     );
 
     // Shape Filtering
@@ -76,16 +87,18 @@ function maroon_filter_products_handler() {
     // Price Filtering
     if ( isset($_POST['price']) && !empty($_POST['price']) ) {
         $price_ranges = $_POST['price'];
-        $price_meta_query = array('relation' => 'OR'); // A product can be in one of the selected ranges
+        $price_meta_query = array('relation' => 'OR');
 
         foreach($price_ranges as $range) {
             $range_values = explode('-', $range);
-            $price_meta_query[] = array(
-                'key' => '_price',
-                'value' => array( (int)$range_values[0], (int)$range_values[1] ),
-                'compare' => 'BETWEEN',
-                'type' => 'NUMERIC'
-            );
+            if(count($range_values) === 2){
+                $price_meta_query[] = array(
+                    'key' => '_price',
+                    'value' => array( (int)$range_values[0], (int)$range_values[1] ),
+                    'compare' => 'BETWEEN',
+                    'type' => 'NUMERIC'
+                );
+            }
         }
         $args['meta_query'][] = $price_meta_query;
     }
@@ -100,7 +113,7 @@ function maroon_filter_products_handler() {
         echo '<p class="woocommerce-info">Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.</p>';
     }
 
-    wp_die(); // This is required to terminate immediately and return a proper response
+    wp_die();
 }
 add_action('wp_ajax_maroon_filter_products', 'maroon_filter_products_handler');
 add_action('wp_ajax_nopriv_maroon_filter_products', 'maroon_filter_products_handler');
