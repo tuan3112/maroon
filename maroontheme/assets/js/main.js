@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (menuToggle && mobileNav && pageOverlay) {
     const toggleMenu = () => {
-      // This is the fix: toggle both classes on the correct elements
       body.classList.toggle("mobile-menu-open");
       mobileNav.classList.toggle("is-open");
     };
@@ -62,6 +61,78 @@ document.addEventListener("DOMContentLoaded", () => {
       contactCloseButton.addEventListener("click", () =>
         contactWidget.classList.remove("is-open")
       );
+    }
+  }
+
+  /**
+   * ===================================================================
+   * 2. WOOCOMMERCE & FILTERING LOGIC (jQuery Dependent)
+   * ===================================================================
+   */
+
+  if (typeof jQuery === "undefined") {
+    return;
+  }
+
+  const $ = jQuery;
+
+  // --- AJAX Product Filter Logic ---
+  const filterSidebar = document.getElementById("filter-sidebar");
+  if (filterSidebar && typeof maroon_ajax !== "undefined") {
+    const productGrid = document.getElementById("product-grid-main");
+    const applyFiltersBtn = document.getElementById("apply-filters");
+    const clearFiltersBtn = document.getElementById("clear-filters");
+
+    const performAjaxFilter = () => {
+      if (!productGrid) return;
+
+      const selectedShapes = Array.from(
+        document.querySelectorAll('input[name="shape"]:checked')
+      ).map((el) => el.value);
+      const selectedMaterials = Array.from(
+        document.querySelectorAll('input[name="material"]:checked')
+      ).map((el) => el.value);
+      const selectedPrices = Array.from(
+        document.querySelectorAll('input[name="price"]:checked')
+      ).map((el) => el.value);
+
+      productGrid.style.opacity = "0.5";
+
+      $.ajax({
+        url: maroon_ajax.ajax_url,
+        type: "post",
+        data: {
+          action: "maroon_filter_products",
+          shape: selectedShapes,
+          material: selectedMaterials,
+          price: selectedPrices,
+        },
+        success: function (response) {
+          productGrid.innerHTML = response;
+          productGrid.style.opacity = "1";
+        },
+        error: function () {
+          productGrid.innerHTML =
+            "<p>An error occurred. Please try again.</p>";
+          productGrid.style.opacity = "1";
+        },
+      });
+    };
+
+    if (applyFiltersBtn) {
+      applyFiltersBtn.addEventListener("click", performAjaxFilter);
+    }
+
+    if (clearFiltersBtn) {
+      clearFiltersBtn.addEventListener("click", () => {
+        const checkboxes = filterSidebar.querySelectorAll(
+          'input[type="checkbox"]'
+        );
+        if (checkboxes.length) {
+          checkboxes.forEach((checkbox) => (checkbox.checked = false));
+        }
+        performAjaxFilter();
+      });
     }
   }
 });
