@@ -2206,3 +2206,54 @@ body.filter-open {
     gap: var(--spacing-lg);
   }
 }
+
+/* ==========================================================================
+   WORDPRESS MENU STYLE FIXES
+   ========================================================================== */
+
+/* Apply base link styles to WordPress menu links */
+.main-navigation-desktop .menu-item a {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  font: var(--font-d-h3);
+  color: var(--clr-white);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+/* Add hover effect */
+.main-navigation-desktop .menu-item a:hover {
+  color: var(--clr-gray);
+}
+
+/* Add the underline to the currently active menu item */
+.main-navigation-desktop .current-menu-item a::after {
+  content: "";
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%; /* This creates the underline */
+  height: 2px;
+  background-color: var(--clr-white);
+  transition: width var(--transition-fast);
+}
+
+/* Add the separator line between menu items */
+.main-navigation-desktop .menu-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 40%;
+  background-color: var(--clr-main-t70);
+  border-radius: 2px;
+}
+
+.main-navigation-desktop .menu-item a {
+  color: #FFFFFF !important; /* Add !important here */
+}
