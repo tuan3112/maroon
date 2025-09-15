@@ -7,7 +7,7 @@ function maroontheme_enqueue_scripts() {
     wp_enqueue_style( 'maroon-google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null );
 
     // Enqueue Main Stylesheet
-    wp_enqueue_style( 'maroon-main-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'maroon-main-style', get_template_directory_uri() . '/assets/css/main.css' );
 
     // Enqueue Main JavaScript. The `true` at the end loads it in the footer.
     wp_enqueue_script( 'maroon-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
