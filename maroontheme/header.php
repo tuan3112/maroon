@@ -1,105 +1,128 @@
+<?php
+/**
+ * Header template
+ * Theme: Maroon
+ * @package maroon
+ */
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title( '|', true, 'right' ); ?></title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <?php wp_head(); ?>
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header class="site-header">
-      <div class="header-top">
-        <div class="container header-top-container">
-          <button
-            class="mobile-menu-toggle"
-            aria-label="Mở menu"
+<?php wp_body_open(); ?>
+
+<a class="skip-link screen-reader-text" href="#main-content">
+  <?php esc_html_e( 'Skip to content', 'maroon' ); ?>
+</a>
+
+<header class="site-header" role="banner">
+  <div class="container header-top-container">
+
+    <!-- 1) MOBILE MENU BUTTON (required by main.js + main.css) -->
+    <button class="mobile-menu-toggle"
+            type="button"
+            aria-controls="mobile-navigation"
             aria-expanded="false"
-            aria-controls="main-navigation"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+            aria-label="<?php esc_attr_e( 'Open menu', 'maroon' ); ?>">
+      <span></span><span></span><span></span>
+    </button>
 
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-logo.svg" alt="Maroon Logo" />
-          </a>
-
-          <div class="header-actions">
-            <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
-              <span class="cart-count">0</span>
-            </a>
-            <button
-              class="search-toggle"
-              aria-label="Mở tìm kiếm"
-              aria-controls="search-overlay"
-            >
-              <img
-                src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-search.svg"
-                alt="Search Icon"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="header-bottom">
-        <nav class="main-navigation-desktop" aria-label="Main navigation">
-          <?php
-            wp_nav_menu( array(
-              'theme_location' => 'main-menu',
-              'container' => false,
-              'items_wrap' => '<ul>%3$s</ul>',
-            ) );
-          ?>
-        </nav>
-      </div>
-    </header>
-
-    <nav
-      class="mobile-navigation"
-      id="main-navigation"
-      aria-label="Mobile navigation"
-    >
-        <div class="mobile-nav-header">
-            <a href="/cart" class="cart-icon" aria-label="Giỏ hàng">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-cart.svg" alt="Cart Icon" />
-                <span class="cart-count">0</span>
-            </a>
-            <button class="search-toggle" aria-label="Mở tìm kiếm" aria-controls="search-overlay">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-search.svg" alt="Search Icon" />
-            </button>
-        </div>
-
+    <!-- 2) LOGO -->
+    <div class="logo">
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
         <?php
-            wp_nav_menu( array(
-                'theme_location' => 'main-menu',
-                'container' => false,
-                'menu_class' => 'mobile-nav-links',
-            ) );
+        if ( has_custom_logo() ) {
+          the_custom_logo();
+        } else {
+          bloginfo( 'name' );
+        }
         ?>
+      </a>
+    </div>
 
-        <div class="mobile-nav-footer">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mobile-nav-logo">
-            <img
-                src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/maroon-logo-footer.svg"
-                alt="Maroon Logo"
-            />
-            </a>
-            <div class="mobile-nav-socials">
-            <a href="#" aria-label="Instagram"
-                ><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/instagram-icon.svg" alt="Instagram"
-            /></a>
-            <a href="#" aria-label="Shopee"
-                ><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/shopee-icon.svg" alt="Shopee"
-            /></a>
-            <a href="#" aria-label="Facebook"
-                ><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/facebook-icon.svg" alt="Facebook"
-            /></a>
-            </div>
-        </div>
+    <!-- 3) HEADER ACTIONS (search toggle + cart optional) -->
+    <div class="header-actions">
+      <button class="search-toggle"
+              type="button"
+              aria-controls="site-search"
+              aria-expanded="false"
+              aria-label="<?php esc_attr_e( 'Open search', 'maroon' ); ?>">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/maroon-search.svg' ); ?>"
+             alt="<?php esc_attr_e( 'Search', 'maroon' ); ?>">
+      </button>
+
+      <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+        <a class="cart-icon" href="<?php echo esc_url( wc_get_cart_url() ); ?>" aria-label="<?php esc_attr_e( 'View cart', 'maroon' ); ?>">
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/maroon-cart.svg' ); ?>"
+               alt="<?php esc_attr_e( 'Cart', 'maroon' ); ?>">
+          <span class="cart-count"><?php echo WC()->cart ? absint( WC()->cart->get_cart_contents_count() ) : 0; ?></span>
+        </a>
+      <?php endif; ?>
+    </div>
+  </div>
+
+  <!-- DESKTOP NAVIGATION (optional styling hook: .main-navigation-desktop) -->
+  <div class="header-bottom">
+    <nav class="main-navigation-desktop" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'maroon' ); ?>">
+      <?php
+      wp_nav_menu( [
+        'theme_location' => 'primary',
+        'container'      => false,
+        'menu_class'     => '',
+        'fallback_cb'    => '__return_empty_string', // keep markup clean if no menu set
+        'depth'          => 2,
+      ] );
+      ?>
     </nav>
+  </div>
+</header>
+
+<!-- 4) MOBILE NAVIGATION (required by main.js + main.css) -->
+<nav id="mobile-navigation" class="mobile-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Mobile menu', 'maroon' ); ?>" aria-hidden="true">
+  <ul class="mobile-nav-links">
+    <?php
+    // Reuse the primary menu for mobile; fallback prints nothing (clean).
+    wp_nav_menu( [
+      'theme_location' => 'primary',
+      'container'      => false,
+      'menu_class'     => '',
+      'items_wrap'     => '%3$s', // output only <li> items to fit our <ul> above
+      'fallback_cb'    => '__return_empty_string',
+      'depth'          => 2,
+    ] );
+    ?>
+  </ul>
+
+  <div class="mobile-nav-footer">
+    <div class="mobile-nav-logo">
+      <?php if ( has_custom_logo() ) { the_custom_logo(); } ?>
+    </div>
+    <div class="mobile-nav-socials">
+      <!-- Optional: add social links/icons -->
+    </div>
+  </div>
+</nav>
+
+<!-- 5) PAGE OVERLAY (required for click-to-close and z-index stack) -->
+<div class="page-overlay" aria-hidden="true"></div>
+
+<!-- 6) SEARCH OVERLAY (matches your JS hooks/classes) -->
+<div class="search-overlay" id="site-search" aria-hidden="true">
+  <button class="close-search" type="button" aria-label="<?php esc_attr_e( 'Close search', 'maroon' ); ?>">
+    <!-- Simple ×; replace with SVG if you prefer -->
+    <span aria-hidden="true" style="font-size:32px;line-height:1">×</span>
+  </button>
+
+  <form class="search-overlay-form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+    <label class="screen-reader-text" for="s"><?php esc_html_e( 'Search for:', 'maroon' ); ?></label>
+    <input id="s" type="search" name="s" placeholder="<?php esc_attr_e( 'Search…', 'maroon' ); ?>">
+    <button type="submit"><?php esc_html_e( 'Search', 'maroon' ); ?></button>
+  </form>
+</div>
+
+<!-- Main content landmark -->
+<main id="main-content" class="site-main" role="main">

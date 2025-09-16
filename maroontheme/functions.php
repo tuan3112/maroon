@@ -14,6 +14,33 @@ function maroontheme_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'maroontheme_enqueue_scripts' );
 
+// Theme setup: supports + menus
+add_action('after_setup_theme', function () {
+    // Make strings translatable if you use a text domain like 'maroon'
+    load_theme_textdomain('maroon', get_template_directory() . '/languages');
+
+    // Core supports
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('html5', ['search-form','comment-form','comment-list','gallery','caption','style','script']);
+    add_theme_support('responsive-embeds');
+
+    // ✅ Custom Logo (this unlocks the “Logo” field in Site Identity)
+    add_theme_support('custom-logo', [
+        'height'      => 40,   // recommended, not forced
+        'width'       => 160,  // recommended, not forced
+        'flex-height' => true,
+        'flex-width'  => true,
+        'unlink-homepage-logo' => true, // WP 5.5+
+    ]);
+
+    // Menus
+    register_nav_menus([
+        'primary' => __('Primary Menu', 'maroon'),
+        'footer'  => __('Footer Menu', 'maroon'),
+    ]);
+});
+
 /**
  * Register navigation menus.
  */
