@@ -82,27 +82,37 @@
 </header>
 
 <!-- 4) MOBILE NAVIGATION (required by main.js + main.css) -->
-<nav id="mobile-navigation" class="mobile-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Mobile menu', 'maroon' ); ?>" aria-hidden="true">
+<!-- MOBILE NAVIGATION -->
+<nav id="mobile-navigation" class="mobile-navigation" role="navigation" aria-label="<?php esc_attr_e('Mobile menu','maroon'); ?>" aria-hidden="true">
+
+  <!-- Links -->
   <ul class="mobile-nav-links">
     <?php
-    // Reuse the primary menu for mobile; fallback prints nothing (clean).
-    wp_nav_menu( [
+    wp_nav_menu([
       'theme_location' => 'primary',
       'container'      => false,
-      'menu_class'     => '',
-      'items_wrap'     => '%3$s', // output only <li> items to fit our <ul> above
+      'items_wrap'     => '%3$s', // only <li> items
       'fallback_cb'    => '__return_empty_string',
       'depth'          => 2,
-    ] );
+    ]);
     ?>
   </ul>
 
+  <!-- Footer pinned to bottom -->
   <div class="mobile-nav-footer">
-    <div class="mobile-nav-logo">
-      <?php if ( has_custom_logo() ) { the_custom_logo(); } ?>
+    <div class="mobile-brand">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/maroon-logo-footer.svg' ); ?>" alt="<?php esc_attr_e('Maroon','maroon'); ?>">
     </div>
-    <div class="mobile-nav-socials">
-      <!-- Optional: add social links/icons -->
+    <div class="mobile-socials">
+      <a href="#" aria-label="Instagram">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/instagram-icon.svg' ); ?>" alt="">
+      </a>
+      <a href="#" aria-label="Shopee">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/shopee-icon.svg' ); ?>" alt="">
+      </a>
+      <a href="#" aria-label="Facebook">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/facebook-icon.svg' ); ?>" alt="">
+      </a>
     </div>
   </div>
 </nav>
