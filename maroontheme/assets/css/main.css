@@ -126,7 +126,7 @@ body {
 .logo img {
   height: auto;
   width: auto;
-  max-height: 40px;   /* mobile/tablet default */
+  max-height: 40px; /* mobile/tablet default */
   max-width: 100%;
   object-fit: contain; /* safety, prevents squash inside containers */
 }
@@ -314,6 +314,10 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) {
 body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+body.mobile-menu-open .mobile-menu-toggle {
+  visibility: visible;
+  pointer-events: auto;
+}
 .mobile-navigation {
   position: fixed;
   top: 0;
@@ -332,22 +336,8 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 .mobile-navigation.is-open {
   transform: translateX(0);
 }
-.mobile-nav-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1rem 1rem 0.5rem;
-}
-.mobile-nav-header .mobile-menu-close {
-  background: none;
-  border: none;
-  padding: .25rem .5rem;
-  cursor: pointer;
-  color: var(--clr-white);
-  line-height: 1;
-}
 .mobile-nav-links {
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 .mobile-nav-links a {
   display: block;
@@ -398,7 +388,7 @@ body.mobile-menu-open {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 4rem 1.25rem 1.25rem; /* more breathing room at top/edges */
+  padding: 5rem 1.25rem 1.25rem; /* more breathing room at top/edges */
 }
 
 /* Link list: separators and larger tap targets */
@@ -406,21 +396,21 @@ body.mobile-menu-open {
   list-style: none;
   padding: 0;
   margin: 0 0 1.25rem 0;
-  flex: 1 1 auto;            /* take the vertical space */
+  flex: 1 1 auto; /* take the vertical space */
   overflow-y: auto;
 }
 
 .mobile-nav-links > li {
-  border-bottom: 1px solid rgba(255,255,255,.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .mobile-nav-links > li:first-child {
-  border-top: 1px solid rgba(255,255,255,.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .mobile-nav-links a {
   display: block;
-  padding: 1rem 0;           /* big tap target */
+  padding: 1rem 0; /* big tap target */
   color: var(--clr-white);
   font: var(--font-m-h3);
   text-decoration: none;
@@ -437,7 +427,7 @@ body.mobile-menu-open {
 }
 
 .mobile-brand img {
-  height: 24px;              /* small, mono/white logo works best */
+  height: 24px; /* small, mono/white logo works best */
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1); /* makes dark logo appear white (optional) */
@@ -463,15 +453,14 @@ body.mobile-menu-open {
 
 /* Give the top-left close icon some room (your hamburger turns into an X) */
 .mobile-menu-toggle {
-  margin-left: .75rem;
-  margin-top: .75rem;
+  margin-left: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 /* Ensure the overlay click closes comfortably and content doesn't scroll */
 body.mobile-menu-open {
   overflow: hidden;
 }
-
 
 /* ==========================================================================
    6. HERO BANNER SLIDER
