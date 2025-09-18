@@ -43,6 +43,17 @@
           </ul>
         </div>
       </div>
+      <!-- Contact Widget Button -->
+    <div class="contact-widget-container">
+      <button class="contact-toggle-button">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/head-set-icon-contact.svg' ); ?>" alt="Contact Us">
+      </button>
+      <div class="contact-options">
+        <!-- You can customize these options -->
+        <a href="tel:+1234567890">Call</a>
+        <a href="mailto:contact@yourdomain.com">Email</a>
+      </div>
+    </div>
     </footer>
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal" id="customer-info-modal"></div>

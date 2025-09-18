@@ -841,6 +841,7 @@ body.mobile-menu-open {
 /* ==========================================================================
    12. CONTACT WIDGET
    ========================================================================== */
+/* Contact Widget Styling */
 .contact-widget-container {
   position: fixed;
   bottom: 2rem;
@@ -850,6 +851,7 @@ body.mobile-menu-open {
   flex-direction: column;
   align-items: center;
 }
+
 .contact-toggle-button {
   background: none;
   border: none;
@@ -857,15 +859,16 @@ body.mobile-menu-open {
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
 .contact-toggle-button:hover {
   transform: scale(1.1);
 }
+
 .contact-toggle-button img {
   height: 56px;
   width: 56px;
-  display: block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
+
 .contact-options {
   display: flex;
   flex-direction: column;
@@ -876,18 +879,20 @@ body.mobile-menu-open {
   transform: translateY(20px) scale(0.9);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
 .contact-widget-container.is-open .contact-options {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
 }
+
 .contact-widget-container.is-open .contact-toggle-button {
   transform: scale(0.8);
   opacity: 0;
   pointer-events: none;
 }
-.contact-options a,
-.contact-options button {
+
+.contact-options a {
   display: block;
   width: 50px;
   height: 50px;
@@ -900,18 +905,13 @@ body.mobile-menu-open {
   transition: transform var(--transition-fast);
   border: 1px solid var(--clr-secondary);
 }
-.contact-options a:hover,
-.contact-options button:hover {
+
+.contact-options a:hover {
   transform: scale(1.1);
 }
+
 .contact-options img {
   height: 32px;
-}
-#contact-close-button {
-  cursor: pointer;
-  background-color: var(--clr-main);
-  color: var(--clr-white);
-  border: none;
 }
 
 /* ==========================================================================

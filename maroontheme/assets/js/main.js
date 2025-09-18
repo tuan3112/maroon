@@ -112,8 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
           productGrid.style.opacity = "1";
         },
         error: function () {
-          productGrid.innerHTML =
-            "<p>An error occurred. Please try again.</p>";
+          productGrid.innerHTML = "<p>An error occurred. Please try again.</p>";
           productGrid.style.opacity = "1";
         },
       });
@@ -134,5 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
         performAjaxFilter();
       });
     }
+  }
+});
+
+// Toggle the visibility of the contact options
+document.addEventListener("DOMContentLoaded", function () {
+  const contactButton = document.querySelector(".contact-toggle-button");
+  const contactWidget = document.querySelector(".contact-widget-container");
+  const contactOptions = contactWidget.querySelector(".contact-options");
+
+  if (contactButton && contactOptions) {
+    contactButton.addEventListener("click", function () {
+      contactWidget.classList.toggle("is-open");
+    });
   }
 });

@@ -154,3 +154,15 @@ function maroon_localize_scripts() {
     ));
 }
 add_action('wp_enqueue_scripts', 'maroon_localize_scripts');
+
+function maroon_contact_widget() {
+  register_sidebar( array(
+    'name'          => 'Contact Widget',
+    'id'            => 'contact-widget',
+    'before_widget' => '<div class="contact-widget-container">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>',
+  ) );
+}
+add_action( 'widgets_init', 'maroon_contact_widget' );
