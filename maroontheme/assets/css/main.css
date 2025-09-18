@@ -869,6 +869,7 @@ body.mobile-menu-open {
   width: 56px;
 }
 
+/* Default state: hide the options */
 .contact-options {
   display: flex;
   flex-direction: column;
@@ -876,16 +877,18 @@ body.mobile-menu-open {
   margin-bottom: 1rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px) scale(0.9);
+  transform: translateY(20px) scale(0.9);  /* Starts hidden with animation */
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+/* When the widget is open */
 .contact-widget-container.is-open .contact-options {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1);  /* Show options with smooth animation */
 }
 
+/* When the widget is open, hide the button and animate */
 .contact-widget-container.is-open .contact-toggle-button {
   transform: scale(0.8);
   opacity: 0;
