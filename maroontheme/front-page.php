@@ -4,7 +4,7 @@
       <section class="hero-slider" aria-label="Featured content">
     <?php 
     // Replace the shortcode below with the one you copied from MetaSlider
-    echo do_shortcode('[metaslider id="173"]'); 
+    echo do_shortcode('[metaslider id="209"]'); 
     ?>
     </section>
 

@@ -1,8 +1,13 @@
-/*
-Theme Name: Maroon Theme
+/* 
+Theme Name: MaroonTheme
+Theme URI: https://github.com/tuan3112/maroon
 Author: Tuan3112
-Description: A custom theme for the Maroon glasses website, based on a static design.
-Version: 1.0
+Description: Custom theme for Maroon (WooCommerce + MetaSlider).
+Version: 0.1.0
+Text Domain: maroontheme
+Requires at least: 6.5
+Tested up to: 6.6
+Requires PHP: 8.1
 */
 
 /*

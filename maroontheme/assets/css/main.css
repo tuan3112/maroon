@@ -2289,3 +2289,45 @@ body.filter-open {
     gap: var(--spacing-lg);
   }
 }
+/* === MetaSlider: responsive, no gray gaps, dots visible === */
+
+/* MetaSlider – responsive fix */
+.metaslider .flexslider,
+.metaslider .slides,
+.metaslider .slides > li {
+  height: auto !important;
+}
+
+.metaslider .slides > li {
+  /* Use 3:2 once your slides are 1440x960. 
+     TEMP: if you still see -700x300 images, swap to aspect-ratio: 7 / 3; */
+  aspect-ratio: 3 / 2;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.metaslider .slides img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* fill without distortion */
+  /* tweak focus if needed: object-position: 50% 30%; */
+}
+
+/* Ensure dots appear and sit inside the slide */
+.metaslider .flexslider { position: relative; }
+.metaslider .flex-control-nav {
+  display: flex !important;
+  position: absolute;
+  left: 0; right: 0; bottom: 12px;
+  justify-content: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+/* kill any accidental backgrounds */
+.metaslider, .metaslider .flexslider { background: transparent !important; }
+.metaslider .slides img { object-fit: contain; background:#000; } /* adds letterboxing */
+
+
