@@ -50,8 +50,15 @@
       </button>
       <div class="contact-options">
         <!-- You can customize these options -->
-        <a href="tel:+1234567890">Call</a>
-        <a href="mailto:contact@yourdomain.com">Email</a>
+      <!-- Fanpage Icon Link -->
+      <a href="https://m.me/themaroonofficial" target="_blank" rel="noopener">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/messenger-icon-contact.svg' ); ?>" alt="Call Us">
+      </a>
+
+      <!-- Zalo Icon Link -->
+      <a href="https://zalo.me/0347125600" target="_blank" rel="noopener">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/zalo-icon-contact.svg' ); ?>" alt="Email Us">
+      </a>
       </div>
     </div>
     </footer>
