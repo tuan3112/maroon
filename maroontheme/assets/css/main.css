@@ -2380,8 +2380,6 @@ body.filter-open {
   z-index: 1;                   /* keep below .about-us-summary (z:5) */
 }
 
-/* TEMP: visual debug */
-.about-us-summary { outline: 2px dashed red; }
 
 /* 1) Stop any overlap/pull-up around the hero */
 .metaslider,
@@ -2421,7 +2419,55 @@ section.about-us-summary,
 .metaslider .slides > li { height: auto !important; overflow: visible; }
 .metaslider .slides img { width: 100%; height: auto; object-fit: cover; }
 
-/* Keep dots but low in the stack */
-.metaslider .flexslider { position: relative; }
-.metaslider .flex-control-nav { z-index: 1; }
+/* 1) Lower slider layers; don't clip the next section */
+.metaslider,
+.metaslider .flexslider { 
+  overflow: visible !important;
+  background: transparent !important;
+}
+.metaslider::before,
+.metaslider::after,
+.metaslider .flexslider::before,
+.metaslider .flexslider::after {
+  content: none !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+.metaslider .flex-viewport,
+.metaslider .flex-control-nav,
+.metaslider .flex-direction-nav a {
+  position: relative;
+  z-index: 1 !important; /* keep low */
+}
 
+/* 2) Make the About section win the stack and occupy space */
+.about-us-summary{
+  position: relative;
+  isolation: isolate;     /* start a fresh stacking context */
+  z-index: 5;             /* above slider dots/arrows (z:1) */
+  margin-top: 0 !important;
+  padding-top: clamp(24px, 6vw, 96px);
+  clear: both;
+}
+
+/* 3) Ensure inner content creates its own layout (prevents height collapse) */
+.about-us-summary .container{
+  display: flow-root;      /* modern clearfix; use overflow:auto if you prefer */
+  position: static !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* 4) Slides follow image height (avoid phantom “cream band”) */
+.metaslider .slides > li { height: auto !important; overflow: visible; }
+.metaslider .slides img { width: 100%; height: auto; object-fit: cover; }
+
+/* (Optional) If any reveal-on-scroll classes are used, neutralize them in this section */
+.about-us-summary [data-aos],
+.about-us-summary [class*="reveal"],
+.about-us-summary [class*="fade"]{
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
