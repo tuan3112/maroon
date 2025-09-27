@@ -2330,4 +2330,98 @@ body.filter-open {
 .metaslider, .metaslider .flexslider { background: transparent !important; }
 .metaslider .slides img { object-fit: contain; background:#000; } /* adds letterboxing */
 
+/* === Fix: ensure About Us shows above the slider ========== */
+.about-us-summary {
+  position: relative;        /* creates a stacking context */
+  z-index: 5;                /* higher than MetaSlider dots/overlay */
+  margin-top: 0 !important;
+  padding-top: clamp(24px, 6vw, 96px);
+}
+
+/* === Fix: stop the slider from covering the next section === */
+.metaslider,
+.metaslider .flexslider {
+  overflow: visible !important;   /* let the next section be visible */
+  background: transparent !important;
+}
+
+/* If a decorative mask exists on the slider, neutralize it */
+.metaslider::before,
+.metaslider::after,
+.metaslider .flexslider::before,
+.metaslider .flexslider::after {
+  content: none !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* === Fix: avoid height/aspect mismatches that create “blank bands” === */
+/* Let images define height naturally; no forced aspect-ratio on <li> */
+.metaslider .slides > li {
+  height: auto !important;
+  position: relative;
+  overflow: visible;
+}
+.metaslider .slides img {
+  display: block;
+  width: 100%;
+  height: auto;                 /* natural ratio */
+  object-fit: cover;            /* crops nicely if FlexSlider sets height */
+  /* optional focus tweak: */
+  /* object-position: 50% 30%;  */
+}
+
+/* Keep dots visible but not on a huge z-index layer */
+.metaslider .flexslider { position: relative; }
+.metaslider .flex-control-nav {
+  display: flex !important;
+  position: absolute; left: 0; right: 0; bottom: 12px;
+  justify-content: center; gap: 8px;
+  z-index: 1;                   /* keep below .about-us-summary (z:5) */
+}
+
+/* TEMP: visual debug */
+.about-us-summary { outline: 2px dashed red; }
+
+/* 1) Stop any overlap/pull-up around the hero */
+.metaslider,
+.metaslider .flexslider { overflow: visible !important; }
+.metaslider, .metaslider .flexslider, .hero, .hero-slider {
+  margin-bottom: 0 !important;   /* ensure no negative margin tricks */
+}
+
+/* Strong reset for the first section after the slider */
+section.about-us-summary,
+.about-us-summary.section,
+.wp-block-group.about-us-summary {
+  position: relative;
+  z-index: 5;                    /* stay above slider decorations */
+  margin-top: 0 !important;      /* kill any negative margin from theme styles */
+  padding-top: clamp(24px, 6vw, 96px);
+}
+
+/* 2) Force the inner content to actually render */
+.about-us-summary .container {
+  position: static !important;   /* cancel absolute/fixed if any */
+  opacity: 1 !important;         /* cancel animation libs setting 0 */
+  visibility: visible !important;
+  transform: none !important;    /* cancel translate/scale from animations */
+}
+
+/* If any “reveal on scroll” utility is used, neutralize it here */
+.about-us-summary [class*="reveal"],
+.about-us-summary [class*="aos"],
+.about-us-summary [data-aos] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* MetaSlider slides: let height be natural to avoid phantom blank bands */
+.metaslider .slides > li { height: auto !important; overflow: visible; }
+.metaslider .slides img { width: 100%; height: auto; object-fit: cover; }
+
+/* Keep dots but low in the stack */
+.metaslider .flexslider { position: relative; }
+.metaslider .flex-control-nav { z-index: 1; }
 
